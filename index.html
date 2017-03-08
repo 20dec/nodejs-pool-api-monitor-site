@@ -38,6 +38,10 @@
 				<font color="yellow">&emsp;BLOCK HEIGHT: </font>			
 				<span></span>
 			</p>
+			<p id='maturity'>
+				<font color="yellow">&emsp;MATURITY: </font>			
+				<span></span>
+			</p>
 			<p id='roundhash'>
 				<font color="yellow">&emsp;CURRENT ROUNDHASHES: </font>			
 				<span></span>
@@ -392,10 +396,12 @@
 			var link30b = 'https://supportxmr.com/api/pool/stats';			
 			getData30b();
 			var loop30b = setInterval(getData30b,time30b * 1000);
+			var currentblock = '';
 			function getData30b(){
 				$.getJSON(link30b, function(data) {
 	    			console.log(data);
 	    			$("#currentblock span").html(data.pool_statistics.lastBlockFound);
+				currentblock = data.pool_statistics.lastBlockFound;
 				});
 			}
 		</script>
@@ -450,10 +456,20 @@
 			var link40c = 'https://supportxmr.com/api/network/stats';
 			getData40c();
 			var loop40c = setInterval(getData40c,time40c * 1000);
+			var netcurrentblock = '';
+			var unlock = 'UNLOCK';
+			var countmaturity = '';
 			function getData40c(){
 				$.getJSON(link40c, function(data) {
 	    			console.log(data);
-	    			$("#netcurrentblock span").html(data.height);				
+	    			$("#netcurrentblock span").html(data.height);
+				netcurrentblock = data.height;
+				countmaturity = 60 - (netcurrentblock - currentblock);
+				if (netcurrentblock - currentblock < 60) {
+					$("#maturity span").html(countmaturity+' to go');
+				} else {
+					$("#maturity span").html(unlock);
+				}
 				});
 			}
 		</script>
