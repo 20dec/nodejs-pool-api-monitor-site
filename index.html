@@ -1,12 +1,13 @@
 <html>
 	<head>
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		  
-		  <title>supportXMR</title>
+		<script src="jquery-3.1.1.min.js"></script>
+		<script src="script.js"></script>
+		<script src="wallet_n_pool.js"></script>
+		<title>supportXMR</title>
 	</head>
 	<body background="bg.jpg">
 	<div style="float: left; width: 43%;">
-	<font color='orange' size=11><b>support </b></font><img src="monero.png" alt="XMR">
+	<font color='orange' size=8><b>support </b></font><img src="monero.png" alt="XMR">
 	<br><br>
 	<section>
 		<b>
@@ -16,20 +17,24 @@
 				<font color="5EFF33"> MH/s</font>
 			</p>
 			<p id='diff'>
-				<font color="yellow">&emsp;DIFFICULTY: </font>			
+				<font color="yellow">&emsp;DIFFICULTY: </font>
+				<span></span>
+			</p>
+			<p id='reward'>
+				<font color="yellow">&emsp;REWARD: </font>
 				<span></span>
 			</p>
 			<p id='netcurrentblock'>
-				<font color="yellow">&emsp;CURRENT BLOCK HEIGHT: </font>			
+				<font color="yellow">&emsp;CURRENT BLOCK HEIGHT: </font>
 				<span></span>
 			</p>
 			<p id='networktime'>
-				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>	<!--Will display correct when you have MINER hashtime-->		
+				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>
 				<span></span>
 				<font color="5EFF33"> ago</font>
 			</p>
 			<p id='datenetworkblockfound'>
-				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>	
+				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>
 				<span></span>
 			</p>
 <!---------------------------------------------------------------------------------------->	
@@ -37,122 +42,102 @@
 				<font color='white' size=5>POOL:</font>	
 				<span></span>
 				<font color="5EFF33"> KH/s</font>
-			</p>			
-			<p id='totalblockfound'>
-				<font color="yellow">&emsp;TOTAL BLOCK FOUND: </font>			
+			</p>
+			<p id='network-poolblock'>
+				<font color="yellow">&emsp;POOLtoNETWORK BLOCK: </font>
 				<span></span>
 				<font color="5EFF33"> Blocks</font>
 			</p>
-			<p id='currentblock'>
-				<font color="yellow">&emsp;BLOCK HEIGHT: </font>			
+			<p id='totalblockfound'>
+				<font color="yellow">&emsp;TOTAL BLOCK FOUND: </font>
 				<span></span>
-			</p>
-			<p id='maturity'>
-				<font color="yellow">&emsp;MATURITY: </font>			
-				<span></span>
+				<font color="5EFF33"> Blocks</font>
 			</p>
 			<p id='roundhash'>
-				<font color="yellow">&emsp;CURRENT ROUNDHASHES: </font>			
+				<font color="yellow">&emsp;CURRENT ROUNDHASHES: </font>
 				<span></span>
+				<font color="5EFF33"> Hashes</font>
 			</p>
 			<p id='luck'>
-				<font color="yellow">&emsp;LUCK: </font>			
+				<font color="yellow">&emsp;CURRENT LUCK: </font>
+				<span></span>
+				<font color="5EFF33">%</font>
+			</p>
+			<p id='currentblock'>
+				<font color="yellow">&emsp;LAST BLOCK HEIGHT: </font>
+				<span></span>
+			</p>
+			<p id='lastblockluck'>
+				<font color="yellow">&emsp;LAST BLOCK LUCK: </font>
 				<span></span>
 				<font color="5EFF33">%</font>
 			</p>
 			<p id='time'>
-				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>	<!--Will display correct when you have MINER hashtime-->	
+				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>
 				<span></span>
 				<font color="5EFF33"> ago</font>
 			</p>
 			<p id='dateblockfound'>
-				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>	
+				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>
 				<span></span>
-
-			</p>			
+			</p>
+			<div class="data-section" id="maturityON" style="display: none"></div>
+			<div class="data-section" id="maturityOFF" style="display: none">
+				<div class="data-item-name"><font color="yellow">&emsp;MATURITY:</font> <font color="red">UNLOCK</font></div>
+			</div>
 <!---------------------------------------------------------------------------------------->
 			<p id='hashrate'>
 				<font color='white' size=5>MINER:</font>
 				<span></span>
 				<font color="5EFF33"> H/s</font>
-			</p>		
+			</p>
 			<p id='totaldue'>
-				<font color="yellow">&emsp;PENDING BALANCE: </font>			
+				<font color="yellow">&emsp;PENDING BALANCE: </font>
 				<span></span>
 				<font color="5EFF33"> XMR</font>
 			</p>
 			<p id='totalpaid'>
-				<font color="yellow">&emsp;TOTAL PAID: </font>			
+				<font color="yellow">&emsp;TOTAL PAID: </font>
 				<span></span>
 				<font color="5EFF33"> XMR</font>
-			</p>			
-			<p id='miner01'>																					<!-- "miner01" here link with below script -->					
-				<font color="00FFEC">&emsp;&emsp;&emsp;01 # </font><font color="yellow">miner01: </font>		<!-- change "miner01" here for display on web -->	
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>		
-			<p id='miner02'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;02 # </font><font color="yellow">miner02: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner03'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;03 # </font><font color="yellow">miner03: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner04'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;04 # </font><font color="yellow">miner04: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner05'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;05 # </font><font color="yellow">miner05: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
 			</p>
-			<p id='miner06'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;06 # </font><font color="yellow">miner06: </font>			
+			<p id='totalhash'>
+				<font color="yellow">&emsp;TOTAL HASH: </font>
 				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner07'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;07 # </font><font color="yellow">miner07: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner08'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;08 # </font><font color="yellow">miner08: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner09'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;09 # </font><font color="yellow">miner09: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>	
-			<p id='miner10'>			
-				<font color="00FFEC">&emsp;&emsp;&emsp;10 # </font><font color="yellow">miner10: </font>			
-				<span></span>
-				<font color="5EFF33"> H/s</font>
+				<font color="5EFF33"> Hashes</font>
 			</p>
+			<div class="data-section" id="miner"></div>
+	<br>
 <!---------------------------------------------------------------------------------------->
-		<font color='white' size=5>MARKET:</font>
-			<p id='shapeshift'>
-				<font color="yellow">&emsp;SHAPESHIFT: </font>			
+		<font color='white' size=5>EXCHANGE & MARKET:</font>
+			<p id='xmrdotto'>
+				<font color="yellow">&emsp;XMRdotTO: </font>
 				<span></span>
 				<font color="5EFF33"> XMR/BTC</font>
-			</p>		
-			<p id='exmo'>
-				<font color="yellow">&emsp;EXMO: </font>			
+			</p>
+			<p id='shapeshift'>
+				<font color="yellow">&emsp;SHAPESHIFT: </font>
 				<span></span>
-				<font color="5EFF33"> BTC/USD</font>     
-			</p>		
+				<font color="5EFF33"> XMR/BTC</font>
+			</p>
+			<p id='xmr-usd1'>
+				<font color="yellow">&emsp;XMR1: </font>
+				<span></span>
+				<font color="5EFF33"> USD</font>
+			</p>
+			<p id='xmr-usd2'>
+				<font color="yellow">&emsp;XMR2: </font>
+				<span></span>
+				<font color="5EFF33"> USD</font>
+			</p>
+			<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
+			<br><br>
+			<form id="form1">
+				<button type="button" id="go_btn1">CHATBOX</button>
+			</form>
 		</b>
 	</section>
 
-
-	<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
 
 <!---------------------------------------------------------------------------------------->
 	<style>
@@ -160,399 +145,52 @@
 			color: red;
 		}
 	</style>
-</div>
-
+	</div>
 <!---------------------------------------------------------------------------------------->
-
-<div style="float: right; width: 57%;">
+<!--SUPPORTXMR BLOCK IFRAME-->
+	<div style="float: right; width: 57%;">
 		<style type="text/css">
-		iframe {
+			iframe {
+				height: 860px;
+				width: 880px;
+				border: none;
+			}
+		</style>
 
-			height: 860px;
-			width: 880px;
-			border: none;
-		}
-    </style>
+		<center>
+		<b><font color='red'>supportXMR</font></b>
+		<form id="form">
+		<button type="button" id="go_btn">BLOCKs</button>
+		</form>
 
-	<center>
-	<b><font color='red'>supportXMR</font></b>
-    <form id="form">
+		<iframe src="" id="frame" name="supportxmr"></iframe>
+		<p id="name"></p>
+		</center>
 
-	<button type="button" id="go_btn">OPEN</button>
-	</form>
-	<iframe src="" id="frame" name="supportxmr"></iframe>
-	<p id="name"></p>
-	</center>
-	<script type="text/javascript">
-    (function() {
-        document.getElementById("go_btn").addEventListener("click", go);
-        document.getElementById("form").addEventListener("submit", go);
+		<script type="text/javascript">
+		(function() {
+			document.getElementById("go_btn").addEventListener("click", go);
+			document.getElementById("form").addEventListener("submit", go);
+			function go(e) {
+				e.preventDefault();
+				url = 'https://'+yourpool+'/#/blocks'
+				document.getElementById("frame").src = url;
+				return false;
+			}
+		})(window);
 
-        function go(e) {
-            e.preventDefault();
-			url = 'http://supportxmr.com/#/blocks'
-             document.getElementById("frame").src = url;
-            return false;
-        }
-    })(window);
-    </script>
-</div>
-	
-	
-		<script>
-			var time = 5;// 15s
-			var link = 'https://supportxmr.com/api/miner/your-wallet-address/stats';			// replace "your-wallet-address" with your real wallet address
-			getData();
-			var loop = setInterval(getData,time * 1000);
-			var result_1 = ''; //new
-			var result_2 = '';
+		(function() {
+			document.getElementById("go_btn1").addEventListener("click", go);
+			document.getElementById("form1").addEventListener("submit", go);
 
-			function getData(){
-				$.getJSON(link, function(data) {
-	    			console.log(data);
-	    			$("#hashrate span").html(data.hash);
-				result_1 = data.hash;	
-				});
+			function go(e1) {
+				e1.preventDefault();
+				url = 'http://supportxmr.chatango.com/';
+				window.open(url);
+				return false;
 			}
-	
-			var time_2 = 5;// 15s
-			var link_2 = 'https://supportxmr.com/api/pool/stats/';
-			getData_2();
-			var loop_2 = setInterval(getData_2,time_2 * 1000);
-			function getData_2(){
-				$.getJSON(link_2, function(data) {
-	    			console.log(data);
-					$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);
-					result_2 = data.pool_statistics.totalBlocksFound;
-					$('title').html(result_1+' H/s - '+result_2+' Blocks');
-
-				});
-			}
+		})(window);
 		</script>
-		
-		<script>
-			var time1 = 5;// 15s
-			var link1 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner01';     // replace "your-wallet-address" with your real wallet address      // miner01 here replace with your real miner name in dashboard
-			var loop1 = setInterval(getData1,time1 * 1000);
-			function getData1(){
-				$.getJSON(link1, function(data) {
-	    			console.log(data);
-	    			$("#miner01 span").html(data.hash);											// #miner01 here link with comment above
-				});
-			}
-		</script>
-		
-		<script>
-			var time2 = 5;// 15s
-			var link2 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner02';		// replace "your-wallet-address" with your real wallet address
-			getData2();
-			var loop2 = setInterval(getData2,time2 * 1000);
-			function getData2(){
-				$.getJSON(link2, function(data) {
-	    			console.log(data);
-	    			$("#miner02 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time3 = 5;// 15s
-			var link3 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner03';		// replace "your-wallet-address" with your real wallet address
-			getData3();
-			var loop3 = setInterval(getData3,time3 * 1000);
-			function getData3(){
-				$.getJSON(link3, function(data) {
-	    			console.log(data);
-	    			$("#miner03 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time4 = 5;// 15s
-			var link4 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner04';		// replace "your-wallet-address" with your real wallet address
-			getData4();
-			var loop4 = setInterval(getData4,time4 * 1000);
-			function getData4(){
-				$.getJSON(link4, function(data) {
-	    			console.log(data);
-	    			$("#miner04 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time5 = 5;// 15s
-			var link5 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner05';		// replace "your-wallet-address" with your real wallet address
-			getData5();
-			var loop5 = setInterval(getData5,time5 * 1000);
-			function getData5(){
-				$.getJSON(link5, function(data) {
-	    			console.log(data);
-	    			$("#miner05 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time6 = 5;// 15s
-			var link6 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner06';		// replace "your-wallet-address" with your real wallet address
-			getData6();
-			var loop6 = setInterval(getData6,time6 * 1000);
-			function getData6(){
-				$.getJSON(link6, function(data) {
-	    			console.log(data);
-	    			$("#miner06 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time7 = 5;// 15s
-			var link7 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner07';		// replace "your-wallet-address" with your real wallet address
-			getData7();
-			var loop7 = setInterval(getData7,time7 * 1000);
-			function getData7(){
-				$.getJSON(link7, function(data) {
-	    			console.log(data);
-	    			$("#miner07 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time8 = 5;// 15s
-			var link8 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner08';		// replace "your-wallet-address" with your real wallet address
-			getData8();
-			var loop8 = setInterval(getData8,time8 * 1000);
-			function getData8(){
-				$.getJSON(link8, function(data) {
-	    			console.log(data);
-	    			$("#miner08 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time9 = 5;// 15s
-			var link9 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner09';		// replace "your-wallet-address" with your real wallet address
-			getData9();
-			var loop9 = setInterval(getData9,time9 * 1000);
-			function getData9(){
-				$.getJSON(link9, function(data) {
-	    			console.log(data);
-	    			$("#miner09 span").html(data.hash);
-				});
-			}
-		</script>
-		
-		<script>
-			var time10 = 5;// 15s
-			var link10 = 'https://supportxmr.com/api/miner/your-wallet-address/stats/miner10';		// replace "your-wallet-address" with your real wallet address
-			getData10();
-			var loop10 = setInterval(getData10,time10 * 1000);
-			function getData10(){
-				$.getJSON(link10, function(data) {
-	    			console.log(data);
-	    			$("#miner10 span").html(data.hash);
-				});
-			}
-		</script>
-
-		<script>
-			var time18 = 5;// 15s
-			var link18 = 'https://supportxmr.com/api/miner/your-wallet-address/stats';			// replace "your-wallet-address" with your real wallet address
-			getData18();
-			var loop18 = setInterval(getData18,time18 * 1000);
-			var lasthashtime = '';
-			function getData18(){
-				$.getJSON(link18, function(data) {
-	    			console.log(data);
-	    			$("#totaldue span").html((data.amtDue / 1000000000000).toFixed(10));
-					lasthashtime = data.lastHash * 1000;
-				});
-			}
-		</script>	
-
-		<script>
-			var time19 = 5;// 15s
-			var link19 = 'https://supportxmr.com/api/miner/your-wallet-address/stats';			// replace "your-wallet-address" with your real wallet address
-			getData19();
-			var loop19 = setInterval(getData19,time19 * 1000);
-			function getData19(){
-				$.getJSON(link19, function(data) {
-	    			console.log(data);
-	    			$("#totalpaid span").html((data.amtPaid / 1000000000000).toFixed(10)); 
-				});
-			}
-		</script>		
-
-		<script>
-			var time30 = 5;// 15s
-			var link30 = 'https://supportxmr.com/api/pool/stats';			
-			getData30();
-			var loop30 = setInterval(getData30,time30 * 1000);
-			function getData30(){
-				$.getJSON(link30, function(data) {
-	    			console.log(data);
-	    			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
-				});
-			}
-		</script>		
-
-		<script>
-			var time30b = 5;// 15s
-			var link30b = 'https://supportxmr.com/api/pool/stats';			
-			getData30b();
-			var loop30b = setInterval(getData30b,time30b * 1000);
-			var currentblock = '';
-			function getData30b(){
-				$.getJSON(link30b, function(data) {
-	    			console.log(data);
-	    			$("#currentblock span").html(data.pool_statistics.lastBlockFound);
-				currentblock = data.pool_statistics.lastBlockFound;
-				});
-			}
-		</script>
-
- 		<script>
-			var time40b = 5;// 15s
-			var link40b = 'https://supportxmr.com/api/network/stats';
-			getData40b();
-			var loop40b = setInterval(getData40b,time40b * 1000);
-			var netdiff = '';
-			function getData40b(){
-				$.getJSON(link40b, function(data) {
-	    			console.log(data);
-	    			$("#diff span").html(data.difficulty);
-					netdiff = data.difficulty;
-				});
-			}
-		</script>
- 
- 		<script>
-			var time30d = 5;// 15s
-			var link30d = 'https://supportxmr.com/api/pool/stats';			
-			getData30d();
-			var loop30d = setInterval(getData30d,time30d * 1000);
-			var roundhash = '';
-			var luck = '';
-			function getData30d(){
-				$.getJSON(link30d, function(data) {
-	    			console.log(data);
-	    			$("#roundhash span").html(data.pool_statistics.roundHashes);
-					roundhash = data.pool_statistics.roundHashes;					
-					$("#luck span").html((roundhash / netdiff * 100).toFixed(0));
-				});
-			}
-		</script>
-		
-		<script>
-			var time40 = 5;// 15s
-			var link40 = 'http://moneroblocks.info/api/get_stats';
-			getData40();
-			var loop40 = setInterval(getData40,time40 * 1000);
-			function getData40(){
-				$.getJSON(link40, function(data) {
-	    			console.log(data);
-	    			$("#networkhashrate span").html((data.hashrate / 1000000).toFixed(1));					
-				});
-			}
-		</script>
-
-		<script>
-			var time40c = 5;// 15s
-			var link40c = 'https://supportxmr.com/api/network/stats';
-			getData40c();
-			var loop40c = setInterval(getData40c,time40c * 1000);
-			var netcurrentblock = '';
-			var unlock = 'UNLOCKED';
-			var countmaturity = '';
-			var networkblockfound = '';
-			var networkminute = '';
-			var networkdate = '';
-			var networktime = '';
-			var datenetworkblockfound = '';
-			var datestringnetworkblockfound = '';
-			function getData40c(){
-				$.getJSON(link40c, function(data) {
-	    			console.log(data);
-	    			$("#netcurrentblock span").html(data.height);	
-					netcurrentblock = data.height;
-					networkblockfound = data.ts * 1000;
-					countmaturity = 60 - (netcurrentblock - currentblock);
-					if (netcurrentblock - currentblock < 60) {
-						$("#maturity span").html(countmaturity+' to go');
-					} else {
-						$("#maturity span").html(unlock);
-					}
-					networktime = lasthashtime - networkblockfound;
-					networkdate = new Date(networktime);
-					networkminute = networkdate.getUTCMinutes();
-					datenetworkblockfound = new Date(networkblockfound);
-					datestringnetworkblockfound = datenetworkblockfound.toLocaleString();
-					$("#datenetworkblockfound span").html(datestringnetworkblockfound); // DATE NETWORK BLOCK FOUND
-					$("#networktime span").html(networkminute+' minutes'); // NETWORK LAST BLOCK FOUND
-				});
-			}
-		</script>
-
-		<script>
-			var time41 = 5;// 15s
-			var link41 = 'https://supportxmr.com/api/pool/stats';
-			getData41();
-			var loop41 = setInterval(getData41,time41 * 1000);
-			var time = '';
-			var date = '';
-			var hour = '';
-			var minute = '';
-			var d = new Date();
-			var t = d.getTime();
-			var blockfound = '';
-			var dateblockfound = '';
-			var datestringblockfound = '';			
-			function getData41(){
-				$.getJSON(link41, function(data) {
-	    			console.log(data);	    			
-					blockfound = data.pool_statistics.lastBlockFoundTime * 1000;					
-					time = lasthashtime - blockfound; 
-					date = new Date(time);
-					hour = date.getUTCHours();
-					minute = date.getUTCMinutes();
-					dateblockfound = new Date(blockfound);
-					datestringblockfound = dateblockfound.toLocaleString();
-					$("#dateblockfound span").html(datestringblockfound);	
-					$("#time span").html(hour+' hours '+minute+' minutes');	
-				});			
-			}
-		</script>	
-		
-		<script>
-			var time42 = 5;// 15s
-			var link42 = 'https://shapeshift.io/rate/xmr_btc';
-			getData42();
-			var loop42 = setInterval(getData42,time42 * 1000);
-			function getData42(){
-				$.getJSON(link42, function(data) {
-	    			console.log(data);
-	    			$("#shapeshift span").html(data.rate);
-				});
-			}
-		</script>
-
-		<script>
-			var time43 = 5;// 15s
-			var link43 = 'https://api.exmo.com/v1/ticker';
-			getData43();
-			var loop43 = setInterval(getData43,time43 * 1000);
-			function getData43(){
-				$.getJSON(link43, function(data) {
-	    			console.log(data);
-	    		//	$("#exmo span").html((data.BTC_USD.last_trade * 1).toFixed(3));
-					$("#exmo span").html((data.BTC_USD.sell_price * 1).toFixed(3));
-				});
-			}
-		</script>		
-		
+	</div>
 	</body>
 </html>
