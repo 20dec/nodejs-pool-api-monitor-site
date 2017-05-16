@@ -7,3 +7,8 @@ Change your pool nodejs in "wallet_n_pool.js"
 
 #CONTRIBUTORS:
 Thank @gh2k for some enhancement scripts
+
+#UPDATE this RELEASE:
+- Make clear and clean code
+- Automatically adding Workers/Miners
+- Automatically showing Block Maturity (Up to 5 Blocks at one time)
