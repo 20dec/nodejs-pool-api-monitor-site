@@ -1,5 +1,7 @@
 # nodejs-pool-api-monitor-site
-Simple monitor for nodejs pool via API. Code default for https://supportxmr.com pool. Other site please check API at https://cryptonote-pool-api.restlet.io
+Simple monitor for nodejs pool via API. Code default for https://supportxmr.com pool. Other sites please check API at https://cryptonote-pool-api.restlet.io
+
+RUN DIRECT ON YOUR PC/LAPTOP WITHOUT NEEDED HOSTING
 
 #USAGE:
 Change your wallet address in "wallet_n_pool.js"
