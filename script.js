@@ -47,7 +47,7 @@ function UpdatePoolStats(){
 	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=5", function(data) {
 			lastpoolroundhash = data[0].shares;
 			lastnetdiff = data[0].diff;
-			$("#lastblockluck span").html((lastpoolroundhash / lastnetdiff * 100).toFixed(0));	// POOL LAST BLOCK LUCK
+			$("#lastblockluck span").html(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0));	// POOL LAST BLOCK LUCK
 			maturity1 = 60 - (netcurrentblock - data[0].height);
 			maturity2 = 60 - (netcurrentblock - data[1].height);
 			maturity3 = 60 - (netcurrentblock - data[2].height);
@@ -61,7 +61,7 @@ function UpdatePoolStats(){
 			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
 			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());
 			roundhash = data.pool_statistics.roundHashes;
-			$("#luck span").html((roundhash / netdiff * 100).toFixed(0));
+			$("#luck span").html(((roundhash / netdiff) * 100).toFixed(0));	//POOL CURRENT LUCK
 			blockfound = data.pool_statistics.lastBlockFoundTime * 1000;
 			time = lasthashtime - blockfound;
 			date = new Date(time);
@@ -99,7 +99,7 @@ function UpdateMinerStats(){
 				}
 				
 				for(var i = 0; i < identifiers.length; i++) {		// REPLACE WITH THE NEW WORKERS DATA
-					var minerid = i < 10 ? "0" + i : i;	
+					var minerid = i < 10 ? "0" + i : i;
 					$("#miner").append(
 						"<div class=\"data-section-item miner\" style=\"padding-bottom: 10px\">\n"+
 						"<div class=\"data-item-name\" style=\"display: inline\"><span class=\"minerid\"><font color=\"00FFEC\">&emsp;&emsp;&emsp;"+minerid+" # </font></span><font color=\"yellow\">"+identifiers[i]+":</font></div>\n"+
@@ -111,6 +111,23 @@ function UpdateMinerStats(){
 			});
 	});
 	UpdateTitle();
+}
+
+// OVERALL LUCK
+function LuckAvg(){
+	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=10000", function(data) {
+			sumpoolroundhash = 0;
+			for (var i = 0; i < data.length; i++){
+				sumpoolroundhash += data[i].shares;
+			}
+			avgroundhash = sumpoolroundhash / data.length;
+			sumnetdiff = 0;
+			for (var x = 0; x < data.length; x++){
+				sumnetdiff += data[x].diff;
+			}
+			avgnetdiff = sumnetdiff / data.length;
+			$("#luckavg span").html(((avgroundhash / avgnetdiff) * 100).toFixed(2));	// POOL OVERALL LUCK
+	});
 }
 
 function UpdateMarketExchange(){
@@ -276,6 +293,7 @@ function UpdateAllStats(){
 	UpdateNetworkStats();
 	UpdateMarketExchange();
 	UpdateTitle();
+	LuckAvg();
 }
 
 // SET TIME TO REFRESH ALL VALUE in SECOND
