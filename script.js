@@ -1,11 +1,9 @@
 // ALL VAR
 var unlock = 'UNLOCKED';
-var currentblock = '';
 var netcurrentblock = '';
 var netdiff = '';
 var title1 = '';
 var title2 = '';
-var identifiers = '';
 var lasthashtime = '';
 var maturity1 = '';
 var maturity2 = '';
@@ -33,13 +31,13 @@ function UpdateNetworkStats(){
 			datenetworkblockfound = new Date(networkblockfound);
 			datestringnetworkblockfound = datenetworkblockfound.toLocaleString();
 			$("#datenetworkblockfound span").html(datestringnetworkblockfound);	//  NETWORK DATE BLOCK FOUND
-			$("#networktime span").html(networkminute+' minutes');	// NETWORK LAST BLOCK FOUND
-			$("#network-poolblock span").html(netcurrentblock - currentblock);	// POOLtoNETWORK BLOCK
+			$("#networktime span").html(networkminute+' minutes');	// NETWORK LAST BLOCK FOUND			
 			$("#diff span").html((data.difficulty).toLocaleString());	// NETWORK DIFF
 			$("#reward span").html(data.value / 1000000000000); // NETWORK REWARD
 			netdiff = data.difficulty;
-	});
 	UpdatePoolStats();
+	});
+
 }
 
 // POOL
@@ -53,11 +51,13 @@ function UpdatePoolStats(){
 			maturity3 = 60 - (netcurrentblock - data[2].height);
 			maturity4 = 60 - (netcurrentblock - data[3].height);
 			maturity5 = 60 - (netcurrentblock - data[4].height);
-	});
 	UpdateMaturity();
+	});
+
 	$.getJSON("https://"+yourpool+"/api/pool/stats/pplns", function(data) {
 			$("#currentblock span").html((data.pool_statistics.lastBlockFound).toLocaleString());	// POOL CURRENT BLOCK
 			currentblock = data.pool_statistics.lastBlockFound;
+			$("#network-poolblock span").html(netcurrentblock - currentblock);	// POOLtoNETWORK BLOCK
 			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
 			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());
 			roundhash = data.pool_statistics.roundHashes;
@@ -73,8 +73,9 @@ function UpdatePoolStats(){
 			$("#time span").html(hour+' hours '+minute+' minutes');	// POOL LAST BLOCK FOUND
 			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
 			title2 = data.pool_statistics.totalBlocksFound;
-	});
+	UpdateNetworkStats()
 	UpdateTitle();
+	});
 }
 
 // MINERS
@@ -86,6 +87,9 @@ function UpdateMinerStats(){
 			$("#totalhash span").html(data.totalHashes);	// MINER TOTAL HASH
 			$("#hashrate span").html(data.hash);	// MINER GLOBAL HASHRATE
 			title1 = data.hash;
+	UpdateTitle();
+	UpdateNetworkStats();
+	UpdatePoolStats();
 	});
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/identifiers", function(identifierData) {
 			identifiers = identifierData;  // SORT THE IDENTIFIERS FOR CONSISTENT DISPLAY
@@ -110,7 +114,6 @@ function UpdateMinerStats(){
 				}
 			});
 	});
-	UpdateTitle();
 }
 
 // OVERALL LUCK
