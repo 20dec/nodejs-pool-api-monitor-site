@@ -86,11 +86,11 @@ function UpdateMinerStats(){
 			lasthashtime = data.lastHash * 1000;
 			$("#totalhash span").html(data.totalHashes);	// MINER TOTAL HASH
 			$("#hashrate span").html(data.hash);	// MINER GLOBAL HASHRATE
-			title1 = data.hash;
-	UpdateTitle();
+			title1 = data.hash;	
 	UpdateNetworkStats();
 	UpdatePoolStats();
 	});
+	UpdateTitle();
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/identifiers", function(identifierData) {
 			identifiers = identifierData;  // SORT THE IDENTIFIERS FOR CONSISTENT DISPLAY
 			identifiers.sort();
