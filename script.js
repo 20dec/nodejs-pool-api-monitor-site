@@ -74,8 +74,8 @@ function UpdatePoolStats(){
 			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
 			title2 = data.pool_statistics.totalBlocksFound;
 	UpdateNetworkStats()
-	UpdateTitle();
 	});
+	UpdateTitle();
 }
 
 // MINERS
@@ -89,8 +89,7 @@ function UpdateMinerStats(){
 			title1 = data.hash;	
 	UpdateNetworkStats();
 	UpdatePoolStats();
-	});
-	UpdateTitle();
+	});	
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/identifiers", function(identifierData) {
 			identifiers = identifierData;  // SORT THE IDENTIFIERS FOR CONSISTENT DISPLAY
 			identifiers.sort();
@@ -114,6 +113,7 @@ function UpdateMinerStats(){
 				}
 			});
 	});
+	UpdateTitle();
 }
 
 // OVERALL LUCK
