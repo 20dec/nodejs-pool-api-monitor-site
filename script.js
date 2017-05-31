@@ -25,7 +25,7 @@ function UpdateNetworkStats(){
 			$("#netcurrentblock span").html((data.height).toLocaleString());	// NETWORK CURRENT BLOCK
 			netcurrentblock = data.height;
 			networkblockfound = data.ts * 1000;
-			networktime = lasthashtime - networkblockfound;
+			networktime = parseInt(lasthashtime) - parseInt(networkblockfound);
 			networkdate = new Date(networktime);
 			networkminute = networkdate.getUTCMinutes();
 			datenetworkblockfound = new Date(networkblockfound);
@@ -46,11 +46,12 @@ function UpdatePoolStats(){
 			lastpoolroundhash = data[0].shares;
 			lastnetdiff = data[0].diff;
 			$("#lastblockluck span").html(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0));	// POOL LAST BLOCK LUCK
-			maturity1 = 60 - (netcurrentblock - data[0].height);
-			maturity2 = 60 - (netcurrentblock - data[1].height);
-			maturity3 = 60 - (netcurrentblock - data[2].height);
-			maturity4 = 60 - (netcurrentblock - data[3].height);
-			maturity5 = 60 - (netcurrentblock - data[4].height);
+			chainHeight = parseInt(netcurrentblock);
+			maturity1 = 60 - (chainHeight - data[0].height);
+			maturity2 = 60 - (chainHeight - data[1].height);
+			maturity3 = 60 - (chainHeight - data[2].height);
+			maturity4 = 60 - (chainHeight - data[3].height);
+			maturity5 = 60 - (chainHeight - data[4].height);
 	UpdateMaturity();
 	});
 
@@ -75,7 +76,6 @@ function UpdatePoolStats(){
 			title2 = data.pool_statistics.totalBlocksFound;
 	UpdateNetworkStats()
 	});
-	UpdateTitle();
 }
 
 // MINERS
