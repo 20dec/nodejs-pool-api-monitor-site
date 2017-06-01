@@ -4,12 +4,13 @@ var netcurrentblock = '';
 var netdiff = '';
 var title1 = '';
 var title2 = '';
-var lasthashtime = '';
 var maturity1 = '';
 var maturity2 = '';
 var maturity3 = '';
 var maturity4 = '';
 var maturity5 = '';
+var currentdate = new Date();
+var currentdate2 = currentdate.getTime();
 
 // TITLE
 function UpdateTitle(){
@@ -25,7 +26,7 @@ function UpdateNetworkStats(){
 			$("#netcurrentblock span").html((data.height).toLocaleString());	// NETWORK CURRENT BLOCK
 			netcurrentblock = data.height;
 			networkblockfound = data.ts * 1000;
-			networktime = parseInt(lasthashtime) - parseInt(networkblockfound);
+			networktime = parseInt(currentdate2) - parseInt(networkblockfound);
 			networkdate = new Date(networktime);
 			networkminute = networkdate.getUTCMinutes();
 			datenetworkblockfound = new Date(networkblockfound);
@@ -34,7 +35,7 @@ function UpdateNetworkStats(){
 			$("#networktime span").html(networkminute+' minutes');	// NETWORK LAST BLOCK FOUND			
 			$("#diff span").html((data.difficulty).toLocaleString());	// NETWORK DIFF
 			$("#reward span").html(data.value / 1000000000000); // NETWORK REWARD
-			netdiff = data.difficulty;
+			netdiff = parseInt(data.difficulty);
 	UpdatePoolStats();
 	});
 
@@ -43,9 +44,9 @@ function UpdateNetworkStats(){
 // POOL
 function UpdatePoolStats(){
 	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=5", function(data) {
-			lastpoolroundhash = data[0].shares;
-			lastnetdiff = data[0].diff;
-			$("#lastblockluck span").html(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0));	// POOL LAST BLOCK LUCK
+			lastpoolroundhash = parseInt(data[0].shares);
+			lastnetdiff = parseInt(data[0].diff);
+			$("#lastblockluck span").html(parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0)));	// POOL LAST BLOCK LUCK
 			chainHeight = parseInt(netcurrentblock);
 			maturity1 = 60 - (chainHeight - data[0].height);
 			maturity2 = 60 - (chainHeight - data[1].height);
@@ -57,14 +58,14 @@ function UpdatePoolStats(){
 
 	$.getJSON("https://"+yourpool+"/api/pool/stats/pplns", function(data) {
 			$("#currentblock span").html((data.pool_statistics.lastBlockFound).toLocaleString());	// POOL CURRENT BLOCK
-			currentblock = data.pool_statistics.lastBlockFound;
-			$("#network-poolblock span").html(netcurrentblock - currentblock);	// POOLtoNETWORK BLOCK
+			currentblock = parseInt(data.pool_statistics.lastBlockFound);
+			$("#network-poolblock span").html(chainHeight - currentblock);	// POOLtoNETWORK BLOCK
 			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
 			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());
-			roundhash = data.pool_statistics.roundHashes;
-			$("#luck span").html(((roundhash / netdiff) * 100).toFixed(0));	//POOL CURRENT LUCK
+			roundhash = parseInt(data.pool_statistics.roundHashes);
+			$("#luck span").html(parseInt(((roundhash / netdiff) * 100).toFixed(0)));	//POOL CURRENT LUCK
 			blockfound = data.pool_statistics.lastBlockFoundTime * 1000;
-			time = lasthashtime - blockfound;
+			time = parseInt(currentdate2) - parseInt(blockfound);
 			date = new Date(time);
 			hour = date.getUTCHours();
 			minute = date.getUTCMinutes();
@@ -73,7 +74,7 @@ function UpdatePoolStats(){
 			$("#dateblockfound span").html(datestringblockfound); // POOL DATE BLOCK FOUND
 			$("#time span").html(hour+' hours '+minute+' minutes');	// POOL LAST BLOCK FOUND
 			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
-			title2 = data.pool_statistics.totalBlocksFound;
+			title2 = parseInt(data.pool_statistics.totalBlocksFound);
 	UpdateNetworkStats()
 	});
 }
@@ -86,7 +87,7 @@ function UpdateMinerStats(){
 			lasthashtime = data.lastHash * 1000;
 			$("#totalhash span").html(data.totalHashes);	// MINER TOTAL HASH
 			$("#hashrate span").html(data.hash);	// MINER GLOBAL HASHRATE
-			title1 = data.hash;	
+			title1 = parseInt(data.hash);	
 	UpdateNetworkStats();
 	UpdatePoolStats();
 	});	
@@ -123,12 +124,12 @@ function LuckAvg(){
 			for (var i = 0; i < data.length; i++){
 				sumpoolroundhash += data[i].shares;
 			}
-			avgroundhash = sumpoolroundhash / data.length;
+			avgroundhash = parseInt(sumpoolroundhash / data.length);
 			sumnetdiff = 0;
 			for (var x = 0; x < data.length; x++){
 				sumnetdiff += data[x].diff;
 			}
-			avgnetdiff = sumnetdiff / data.length;
+			avgnetdiff = parseInt(sumnetdiff / data.length);
 			$("#luckavg span").html(((avgroundhash / avgnetdiff) * 100).toFixed(2));	// POOL OVERALL LUCK
 	});
 }
