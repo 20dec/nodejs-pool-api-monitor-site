@@ -2,19 +2,12 @@
 var maturityValue = 60;
 var validValue = 'true';
 var netcurrentblock = '';
-var lasthashtime = '';
+
 
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
 			netcurrentblock = data.height;
 	PoolBlock()
-	});
-}
-
-function UpdateMinerStats(){
-	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/stats", function(data) {
-			lasthashtime = data.lastHash;
-	PoolBlock();
 	});
 }
 
@@ -494,7 +487,6 @@ function PoolBlock(){
 
 function UpdateAllStats(){
 	UpdateNetworkStats();
-	UpdateMinerStats()
 	PoolBlock();
 }
 
