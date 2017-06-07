@@ -2,13 +2,32 @@
 var maturityValue = 60;
 var validValue = 'true';
 var netcurrentblock = '';
+var netcurrentdiff = '';
 var currentdate = new Date();
 var currentts = currentdate.getTime();
 
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
 			netcurrentblock = data.height;
-	PoolBlock()
+			netcurrentdiff = parseInt(data.difficulty);
+	PoolBlock();
+	UpdatePoolStats();
+	});
+}
+
+function UpdatePoolStats(){
+	$.getJSON("https://"+yourpool+"/api/pool/stats/pplns", function(data) {
+			currentroundhash = parseInt(data.pool_statistics.roundHashes);
+			currenteffort =  parseInt(((currentroundhash / netcurrentdiff)*100).toFixed(0));
+			
+		if (currenteffort > 100)
+			{$("#currenteffort span").html('<font color="red">'+currenteffort+'%</font>');}
+		else
+			{if (currenteffort > 75 && currenteffort < 101)
+				{$("#currenteffort span").html('<font color="#FA8072">'+currenteffort+'%</font>');}
+					else
+						{$("#currenteffort span").html('<font color="5EFF33">'+currenteffort+'%</font>');}
+			}
 	});
 }
 
@@ -31,7 +50,6 @@ function PoolBlock(){
 		maturity13 = chainHeight - data[12].height;
 		maturity14 = chainHeight - data[13].height;
 		maturity15 = chainHeight - data[14].height;
-
 
 		if (validValue = data[0].valid){
 			if (maturity1 <= maturityValue)
@@ -108,7 +126,6 @@ function PoolBlock(){
 				{$("#maturity15 span").html((maturityValue - maturity15)+' to go');}
 			else {$("#maturity15 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity15 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
-
 
 // EFFORT AND COLOR
 	coloreffort1 = ((data[0].shares / data[0].diff)*100).toFixed(0);
@@ -325,7 +342,6 @@ function PoolBlock(){
 		{$("#height15 span").html((data[14].height).toLocaleString());}
 	else {$("#height15 span").html('<font color="black">'+(data[14].height).toLocaleString()+'</font>');}
 
-
 // VALID
 	if (validValue = data[0].valid){
 		$("#valid1 span").html('<i class="material-icons" style="font-size:22px;color:#5EFF33;">done</i>');
@@ -402,7 +418,7 @@ function PoolBlock(){
 	} else {
 		$("#valid15 span").html('<i class="material-icons" style="font-size:22px;color:red;">clear</i>');
 	}
-	
+
 // TIME FOUND
 	date1 = new Date(data[0].ts);
 	date2 = new Date(data[1].ts);
@@ -435,7 +451,7 @@ function PoolBlock(){
 	datetime13 = date13.toLocaleString();
 	datetime14 = date14.toLocaleString();
 	datetime15 = date15.toLocaleString();
-
+	
 	datets1 = new Date(parseInt(currentts) - parseInt(data[0].ts));
 	datets2 = new Date(parseInt(currentts) - parseInt(data[1].ts));
 	datets3 = new Date(parseInt(currentts) - parseInt(data[2].ts));
@@ -815,8 +831,8 @@ function PoolBlock(){
 					}
 				}
 			}
-		}		
-		
+		}
+
 	if (validValue = data[0].valid)
 		{$("#tf1 span").html(datetime1);}
 	else {$("#tf1 span").html('<font color="black">'+datetime1+'</font>');}	
@@ -862,18 +878,18 @@ function PoolBlock(){
 	if (validValue = data[14].valid)
 		{$("#tf15 span").html(datetime15);}
 	else {$("#tf15 span").html('<font color="black">'+datetime15+'</font>');}
+
 	});
 }
-
-
 
 function UpdateAllStats(){
 	UpdateNetworkStats();
 	PoolBlock();
+	UpdatePoolStats();
 }
 
 // SET TIME TO REFRESH ALL VALUE in SECOND
-var time = 5;
+var time = 10;
 
 $(window).on("load", function() {
 	UpdateAllStats();
