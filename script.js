@@ -181,7 +181,7 @@ function showMaturityPanel(maturityAvailable){
 	}
 }
 function UpdateMaturity(){
-		if (maturity5 > 1) {
+		if (maturity5 > 0) {
 			showMaturityPanel(true);
 			var maturity_divs = $("div.maturityON");
 				for(var i = 0; i < maturity_divs.length; i++) {
@@ -215,7 +215,7 @@ function UpdateMaturity(){
 				"</div>\n"
 			);
 		} else {
-				if (maturity4 > 1) {
+				if (maturity4 > 0) {
 					showMaturityPanel(true);
 					var maturity_divs = $("div.maturityON");
 						for(var i = 0; i < maturity_divs.length; i++) {
@@ -244,7 +244,7 @@ function UpdateMaturity(){
 						"</div>\n"
 			);
 				} else {
-					if (maturity3 > 1) {
+					if (maturity3 > 0) {
 						showMaturityPanel(true);
 						var maturity_divs = $("div.maturityON");
 							for(var i = 0; i < maturity_divs.length; i++) {
@@ -268,7 +268,7 @@ function UpdateMaturity(){
 							"</div>\n"
 						);
 					} else {
-						if (maturity2 > 1) {
+						if (maturity2 > 0) {
 							showMaturityPanel(true);
 							var maturity_divs = $("div.maturityON");
 								for(var i = 0; i < maturity_divs.length; i++) {
@@ -287,7 +287,7 @@ function UpdateMaturity(){
 								"</div>\n"
 							);
 						} else {
-							if (maturity1 > 1) {
+							if (maturity1 > 0) {
 								showMaturityPanel(true);
 								var maturity_divs = $("div.maturityON");
 									for(var i = 0; i < maturity_divs.length; i++) {
