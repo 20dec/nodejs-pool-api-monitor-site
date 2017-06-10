@@ -59,77 +59,77 @@ function PoolBlock(){
 		maturity15 = chainHeight - data[74].height;
 
 		if (validValue = data[60].valid){
-			if (maturity1 <= maturityValue)
+			if (maturity1 < maturityValue)
 				{$("#maturity1 span").html((maturityValue - maturity1)+' to go');}
 			else {$("#maturity1 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity1 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[61].valid){
-			if (maturity2 <= maturityValue)
+			if (maturity2 < maturityValue)
 				{$("#maturity2 span").html((maturityValue - maturity2)+' to go');}
 			else {$("#maturity2 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity2 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[62].valid){
-			if (maturity3 <= maturityValue)
+			if (maturity3 < maturityValue)
 				{$("#maturity3 span").html((maturityValue - maturity3)+' to go');}
 			else {$("#maturity3 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity3 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[63].valid){
-			if (maturity4 <= maturityValue)
+			if (maturity4 < maturityValue)
 				{$("#maturity4 span").html((maturityValue - maturity4)+' to go');}
 			else {$("#maturity4 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity4 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[64].valid){
-			if (maturity5 <= maturityValue)
+			if (maturity5 < maturityValue)
 				{$("#maturity5 span").html((maturityValue - maturity5)+' to go');}
 			else {$("#maturity5 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity5 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[65].valid){
-			if (maturity6 <= maturityValue)
+			if (maturity6 < maturityValue)
 				{$("#maturity6 span").html((maturityValue - maturity6)+' to go');}
 			else {$("#maturity6 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity6 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[66].valid){
-			if (maturity7 <= maturityValue)
+			if (maturity7 < maturityValue)
 				{$("#maturity7 span").html((maturityValue - maturity7)+' to go');}
 			else {$("#maturity7 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity7 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[67].valid){
-			if (maturity8 <= maturityValue)
+			if (maturity8 < maturityValue)
 				{$("#maturity8 span").html((maturityValue - maturity8)+' to go');}
 			else {$("#maturity8 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity8 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[68].valid){
-			if (maturity9 <= maturityValue)
+			if (maturity9 < maturityValue)
 				{$("#maturity9 span").html((maturityValue - maturity9)+' to go');}
 			else {$("#maturity9 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity9 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[69].valid){
-			if (maturity10 <= maturityValue)
+			if (maturity10 < maturityValue)
 				{$("#maturity10 span").html((maturityValue - maturity10)+' to go');}
 			else {$("#maturity10 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity10 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[70].valid){
-			if (maturity11 <= maturityValue)
+			if (maturity11 < maturityValue)
 				{$("#maturity11 span").html((maturityValue - maturity11)+' to go');}
 			else {$("#maturity11 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity11 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[71].valid){
-			if (maturity12 <= maturityValue)
+			if (maturity12 < maturityValue)
 				{$("#maturity12 span").html((maturityValue - maturity12)+' to go');}
 			else {$("#maturity12 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity12 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[72].valid){
-			if (maturity13 <= maturityValue)
+			if (maturity13 < maturityValue)
 				{$("#maturity13 span").html((maturityValue - maturity13)+' to go');}
 			else {$("#maturity13 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity13 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[73].valid){
-			if (maturity14 <= maturityValue)
+			if (maturity14 < maturityValue)
 				{$("#maturity14 span").html((maturityValue - maturity14)+' to go');}
 			else {$("#maturity14 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity14 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
 		if (validValue = data[74].valid){
-			if (maturity15 <= maturityValue)
+			if (maturity15 < maturityValue)
 				{$("#maturity15 span").html((maturityValue - maturity15)+' to go');}
 			else {$("#maturity15 span").html('<i class="material-icons" style="font-size:22px;color:orange;">lock_open</i>');}
 		} else {$("#maturity15 span").html('<i class="material-icons" style="font-size:22px;color:black;">lock_open</i>');}
