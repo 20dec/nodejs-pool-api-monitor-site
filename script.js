@@ -12,6 +12,7 @@ var maturity5 = '';
 var currentdate = new Date();
 var currentdate2 = currentdate.getTime();
 var validValue = 'true';
+var chainHeight = '';
 
 // TITLE
 function UpdateTitle(){
@@ -48,7 +49,8 @@ function UpdatePoolStats(){
 			lastpoolroundhash = parseInt(data[0].shares);
 			lastnetdiff = parseInt(data[0].diff);
 			if (validValue = data[0].valid){
-			$("#lastblockluck span").html(parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0)));	// POOL LAST BLOCK LUCK
+				if (validValue = data[1].valid){$("#lastblockluck span").html(parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0)));
+					} else {$("#lastblockluck span").html(parseInt((((parseInt(data[0].shares) + parseInt(data[1].shares)) / parseInt(data[1].diff) * 100).toFixed(0))));}
 			} else {$("#lastblockluck span").html(parseInt(((parseInt(data[1].shares) / parseInt(data[1].diff) * 100).toFixed(0))));};
 			chainHeight = parseInt(netcurrentblock);
 			if (validValue = data[0].valid){
