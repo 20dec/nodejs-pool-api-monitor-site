@@ -5,6 +5,8 @@ var netcurrentblock = '';
 var netcurrentdiff = '';
 var currentdate = new Date();
 var currentts = currentdate.getTime();
+var lastvalidblock = '';
+var lastpoolroundhash = '';
 
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
@@ -19,7 +21,10 @@ function UpdatePoolStats(){
 	$.getJSON("https://"+yourpool+"/api/pool/stats/pplns", function(data) {
 			currentroundhash = parseInt(data.pool_statistics.roundHashes);
 			currenteffort =  parseInt(((currentroundhash / netcurrentdiff)*100).toFixed(0));
-			
+			if (validValue = lastvalidblock){
+				currenteffort =  parseInt(((currentroundhash / netcurrentdiff)*100).toFixed(0));}
+			else {currenteffort =  parseInt((((currentroundhash + lastpoolroundhash) / netcurrentdiff)*100).toFixed(0));}
+		
 		if (currenteffort > 100)
 			{$("#currenteffort span").html('<font color="red">'+currenteffort+'%</font>');}
 		else
@@ -32,7 +37,9 @@ function UpdatePoolStats(){
 }
 
 function PoolBlock(){
-	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=75", function(data) {
+	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=15", function(data) {
+		lastvalidblock = data[0].valid;
+		lastpoolroundhash = parseInt(data[0].shares);
 // MATURITY
 		chainHeight = parseInt(netcurrentblock);
 		maturity1 = chainHeight - data[60].height;
