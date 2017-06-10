@@ -46,13 +46,25 @@ function UpdatePoolStats(){
 	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=5", function(data) {
 			lastpoolroundhash = parseInt(data[0].shares);
 			lastnetdiff = parseInt(data[0].diff);
+			if (validValue = data[0].valid){
 			$("#lastblockluck span").html(parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0)));	// POOL LAST BLOCK LUCK
+			} else {$("#lastblockluck span").html(parseInt(((parseInt(data[1].shares) / parseInt(data[1].diff) * 100).toFixed(0))));};
 			chainHeight = parseInt(netcurrentblock);
+			if (validValue = data[0].valid){
 			maturity1 = 60 - (chainHeight - data[0].height);
-			maturity2 = 60 - (chainHeight - data[1].height);
+			} else {maturity1 = 0};
+			if (validValue = data[1].valid){
+			maturity2 = 60 - (chainHeight - data[1].height)
+			} else {maturity2 = 0};
+			if (validValue = data[2].valid){
 			maturity3 = 60 - (chainHeight - data[2].height);
+			} else {maturity3 = 0};
+			if (validValue = data[3].valid){
 			maturity4 = 60 - (chainHeight - data[3].height);
+			} else {maturity4 = 0};
+			if (validValue = data[4].valid){
 			maturity5 = 60 - (chainHeight - data[4].height);
+			} else {maturity5 = 0};
 	UpdateMaturity();
 	});
 
