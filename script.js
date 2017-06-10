@@ -11,6 +11,7 @@ var maturity4 = '';
 var maturity5 = '';
 var currentdate = new Date();
 var currentdate2 = currentdate.getTime();
+var validValue = 'true';
 
 // TITLE
 function UpdateTitle(){
