@@ -13,6 +13,8 @@ var currentdate = new Date();
 var currentdate2 = currentdate.getTime();
 var validValue = 'true';
 var chainHeight = '';
+var lastpoolroundhash = '';
+var lastvalidblock = '';
 
 // TITLE
 function UpdateTitle(){
@@ -46,6 +48,7 @@ function UpdateNetworkStats(){
 // POOL
 function UpdatePoolStats(){
 	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=5", function(data) {
+			lastvalidblock = data[0].valid;
 			lastpoolroundhash = parseInt(data[0].shares);
 			lastnetdiff = parseInt(data[0].diff);
 			if (validValue = data[0].valid){
@@ -78,7 +81,9 @@ function UpdatePoolStats(){
 			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
 			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());
 			roundhash = parseInt(data.pool_statistics.roundHashes);
-			$("#luck span").html(parseInt(((roundhash / netdiff) * 100).toFixed(0)));	//POOL CURRENT LUCK
+			if (validValue = lastvalidblock){ 	//POOL CURRENT LUCK
+				$("#luck span").html(parseInt(((roundhash / netdiff) * 100).toFixed(0)));}
+			else {$("#luck span").html(parseInt((((roundhash + lastpoolroundhash)  / netdiff) * 100).toFixed(0)));}
 			blockfound = data.pool_statistics.lastBlockFoundTime * 1000;
 			time = parseInt(currentdate2) - parseInt(blockfound);
 			date = new Date(time);
