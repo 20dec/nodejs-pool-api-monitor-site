@@ -17,3 +17,6 @@ Thank @gh2k for some enhancement scripts
 
 #TRY IT ONLINE:
 http://api4sx.cf/
+
+#TRY ANDROID APP:
+http://api4sx.cf/supportxmr.apk
