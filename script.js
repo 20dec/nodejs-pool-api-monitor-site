@@ -90,7 +90,9 @@ function UpdatePoolStats(){
 			dateblockfound = new Date(blockfound);
 			datestringblockfound = dateblockfound.toLocaleString();
 			$("#dateblockfound span").html(datestringblockfound); // POOL DATE BLOCK FOUND
-			$("#time span").html(hour+' hours '+minute+' minutes');	// POOL LAST BLOCK FOUND
+			if (time < 3600000) {	// POOL LAST BLOCK FOUND
+				$("#time span").html(minute+' minutes');
+			} else {$("#time span").html(hour+' hours '+minute+' minutes');}
 			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
 			title2 = parseInt(data.pool_statistics.totalBlocksFound);
 	});
