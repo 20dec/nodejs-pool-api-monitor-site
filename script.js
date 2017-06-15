@@ -93,7 +93,6 @@ function UpdatePoolStats(){
 			$("#time span").html(hour+' hours '+minute+' minutes');	// POOL LAST BLOCK FOUND
 			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
 			title2 = parseInt(data.pool_statistics.totalBlocksFound);
-	UpdateNetworkStats()
 	});
 }
 
@@ -101,13 +100,10 @@ function UpdatePoolStats(){
 function UpdateMinerStats(){
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/stats", function(data) {
 			$("#totaldue span").html((data.amtDue / 1000000000000).toFixed(10));	// MINER PENDING BALANCE
-			$("#totalpaid span").html((data.amtPaid / 1000000000000).toFixed(10));	// MINER TOTAL PAID
-			lasthashtime = data.lastHash * 1000;
+			$("#totalpaid span").html((data.amtPaid / 1000000000000).toFixed(10));	// MINER TOTAL PAID			
 			$("#totalhash span").html(data.totalHashes);	// MINER TOTAL HASH
 			$("#hashrate span").html(data.hash);	// MINER GLOBAL HASHRATE
 			title1 = parseInt(data.hash);	
-	UpdateNetworkStats();
-	UpdatePoolStats();
 	});	
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/identifiers", function(identifierData) {
 			identifiers = identifierData;  // SORT THE IDENTIFIERS FOR CONSISTENT DISPLAY
@@ -132,7 +128,6 @@ function UpdateMinerStats(){
 				}
 			});
 	});
-	UpdateTitle();
 }
 
 // OVERALL LUCK
