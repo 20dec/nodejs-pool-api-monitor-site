@@ -15,6 +15,9 @@ Thank @gh2k for some enhancement scripts
 - Automatically adding Workers/Miners
 - Automatically showing Block Maturity (Up to 5 Blocks at one time)
 
+#SCREENSHOT:
+http://imgh.us/screenshot_78.png
+
 #TRY IT ONLINE:
 http://api4sx.cf/
 
