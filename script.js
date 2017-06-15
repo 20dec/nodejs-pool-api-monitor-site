@@ -23,9 +23,6 @@ function UpdateTitle(){
 
 // NETWORK
 function UpdateNetworkStats(){
-	$.getJSON("http://moneroblocks.info/api/get_stats", function(data) {
-			$("#networkhashrate span").html((data.hashrate / 1000000).toFixed(1));	// NETWORK HASHRATE
-	});
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
 			$("#netcurrentblock span").html((data.height).toLocaleString());	// NETWORK CURRENT BLOCK
 			netcurrentblock = data.height;
@@ -40,6 +37,7 @@ function UpdateNetworkStats(){
 			$("#diff span").html((data.difficulty).toLocaleString());	// NETWORK DIFF
 			$("#reward span").html(data.value / 1000000000000); // NETWORK REWARD
 			netdiff = parseInt(data.difficulty);
+			$("#networkhashrate span").html((netdiff / 120 / 1000000).toFixed(1));	// NETWORK HASHRATE
 	UpdatePoolStats();
 	});
 
@@ -126,9 +124,9 @@ function UpdateMinerStats(){
 					var minerid = i < 10 ? "0" + i : i;
 					$("#miner").append(
 						"<div class=\"data-section-item miner\" style=\"padding-bottom: 10px\">\n"+
-						"<div class=\"data-item-name\" style=\"display: inline\"><span class=\"minerid\"><font color=\"00FFEC\">&emsp;&emsp;&emsp;"+minerid+" # </font></span><font color=\"yellow\">"+identifiers[i]+":</font></div>\n"+
-						"<div class=\"data-item-value\" id="+identifiers[i]+"\" style=\"display: inline\"><font color=\"red\">"+workerData[identifiers[i]].hash+"</font></div>\n"+
-						"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> H/s</font></div>\n"+
+						"<div class=\"data-item-name\" style=\"display: inline\"><span class=\"minerid\"><b><font color=\"4DC3FA\">"+minerid+" # </font></span><font color=\"0f0f0f\">"+identifiers[i]+":</font></b></div>\n"+
+						"<div class=\"data-item-value\" id="+identifiers[i]+"\" style=\"display: inline\"><b><font color=\"red\">"+workerData[identifiers[i]].hash+"</font></b></div>\n"+
+						"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> H/s</font></b></div>\n"+
 						"</div>\n"
 					);
 				}
@@ -189,29 +187,29 @@ function UpdateMaturity(){
 				}
 			$("#maturityON").append(
 				"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-				"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 1:</font></div>\n"+
-				"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><font color=\"red\">"+maturity1+"</font></div>\n"+
-				"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+				"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 1:</font></b></div>\n"+
+				"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity1+"</font></b></div>\n"+
+				"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 				"</div>\n"+
 				"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-				"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 2:</font></div>\n"+
-				"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><font color=\"red\">"+maturity2+"</font></div>\n"+
-				"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+				"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 2:</font></b></div>\n"+
+				"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity2+"</font></b></div>\n"+
+				"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 				"</div>\n"+
 				"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-				"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 3:</font></div>\n"+
-				"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><font color=\"red\">"+maturity3+"</font></div>\n"+
-				"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+				"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 3:</font></b></div>\n"+
+				"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity3+"</font></b></div>\n"+
+				"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 				"</div>\n"+
 				"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-				"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 4:</font></div>\n"+
-				"<div class=\"data-item-value\" id="+maturity4+"\" style=\"display: inline\"><font color=\"red\">"+maturity4+"</font></div>\n"+
-				"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+				"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 4:</font></b></div>\n"+
+				"<div class=\"data-item-value\" id="+maturity4+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity4+"</font></b></div>\n"+
+				"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 				"</div>\n"+
 				"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-				"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 5:</font></div>\n"+
-				"<div class=\"data-item-value\" id="+maturity5+"\" style=\"display: inline\"><font color=\"red\">"+maturity5+"</font></div>\n"+
-				"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+				"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 5:</font></b></div>\n"+
+				"<div class=\"data-item-value\" id="+maturity5+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity5+"</font></b></div>\n"+
+				"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 				"</div>\n"
 			);
 		} else {
@@ -223,24 +221,24 @@ function UpdateMaturity(){
 						}
 					$("#maturityON").append(
 						"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-						"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 1:</font></div>\n"+
-						"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><font color=\"red\">"+maturity1+"</font></div>\n"+
-						"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+						"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 1:</font></b></div>\n"+
+						"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity1+"</font></b></div>\n"+
+						"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 						"</div>\n"+
 						"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-						"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 2:</font></div>\n"+
-						"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><font color=\"red\">"+maturity2+"</font></div>\n"+
-						"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+						"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 2:</font></b></div>\n"+
+						"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity2+"</font></b></div>\n"+
+						"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 						"</div>\n"+
 						"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-						"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 3:</font></div>\n"+
-						"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><font color=\"red\">"+maturity3+"</font></div>\n"+
-						"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+						"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 3:</font></b></div>\n"+
+						"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity3+"</font></b></div>\n"+
+						"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 						"</div>\n"+
 						"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-						"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 4:</font></div>\n"+
-						"<div class=\"data-item-value\" id="+maturity4+"\" style=\"display: inline\"><font color=\"red\">"+maturity4+"</font></div>\n"+
-						"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+						"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 4:</font></b></div>\n"+
+						"<div class=\"data-item-value\" id="+maturity4+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity4+"</font></b></div>\n"+
+						"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 						"</div>\n"
 			);
 				} else {
@@ -252,19 +250,19 @@ function UpdateMaturity(){
 							}
 						$("#maturityON").append(
 							"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-							"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 1:</font></div>\n"+
-							"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><font color=\"red\">"+maturity1+"</font></div>\n"+
-							"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+							"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 1:</font></b></div>\n"+
+							"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity1+"</font></b></div>\n"+
+							"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 							"</div>\n"+
 							"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-							"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 2:</font></div>\n"+
-							"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><font color=\"red\">"+maturity2+"</font></div>\n"+
-							"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+							"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 2:</font></b></div>\n"+
+							"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity2+"</font></b></div>\n"+
+							"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 							"</div>\n"+
 							"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-							"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 3:</font></div>\n"+
-							"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><font color=\"red\">"+maturity3+"</font></div>\n"+
-							"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+							"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 3:</font></b></div>\n"+
+							"<div class=\"data-item-value\" id="+maturity3+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity3+"</font></b></div>\n"+
+							"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 							"</div>\n"
 						);
 					} else {
@@ -276,14 +274,14 @@ function UpdateMaturity(){
 								}
 							$("#maturityON").append(
 								"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-								"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 1:</font></div>\n"+
-								"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><font color=\"red\">"+maturity1+"</font></div>\n"+
-								"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+								"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 1:</font></b></div>\n"+
+								"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity1+"</font></b></div>\n"+
+								"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 								"</div>\n"+
 								"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-								"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 2:</font></div>\n"+
-								"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><font color=\"red\">"+maturity2+"</font></div>\n"+
-								"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+								"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 2:</font></b></div>\n"+
+								"<div class=\"data-item-value\" id="+maturity2+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity2+"</font></b></div>\n"+
+								"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 								"</div>\n"
 							);
 						} else {
@@ -295,9 +293,9 @@ function UpdateMaturity(){
 									}
 								$("#maturityON").append(
 									"<div class=\"data-section-item maturityON\" style=\"padding-bottom: 5px\">\n"+
-									"<div class=\"data-item-name\" style=\"display: inline\"><font color=\"yellow\">&emsp;&emsp;&emsp;MATURITY 1:</font></div>\n"+
-									"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><font color=\"red\">"+maturity1+"</font></div>\n"+
-									"<div class=\"data-item-units\" style=\"display: inline\"><font color=\"5EFF33\"> to go</font></div>\n"+
+									"<div class=\"data-item-name\" style=\"display: inline\"><b><font color=\"4DC3FA\">MATURITY 1:</font></b></div>\n"+
+									"<div class=\"data-item-value\" id="+maturity1+"\" style=\"display: inline\"><b><font color=\"red\">"+maturity1+"</font></b></div>\n"+
+									"<div class=\"data-item-units\" style=\"display: inline\"><b><font color=\"5EFF33\"> to go</font></b></div>\n"+
 									"</div>\n"
 								);
 							} else {
