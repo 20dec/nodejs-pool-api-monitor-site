@@ -2,189 +2,173 @@
 	<head>
 		<script src="jquery-3.1.1.min.js"></script>
 		<script src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="script.css">
 		<script src="wallet_n_pool.js"></script>
 		<title>supportXMR</title>
 	</head>
 	<body background="bg.jpg">
-	<div style="float: left; width: 43%;">
+	<div style="float: left; width: 50%;">
 	<font color='orange' size=8><b>support </b></font><img src="monero.png" alt="XMR">
 	<br><br>
-	<section>
-		<b>
-			<p id='networkhashrate'>
-				<font color='white' size=5>NETWORK:</font>
-				<span></span>
-				<font color="5EFF33"> MH/s</font>
-			</p>
-			<p id='diff'>
-				<font color="yellow">&emsp;DIFFICULTY: </font>
-				<span></span>
-			</p>
-			<p id='reward'>
-				<font color="yellow">&emsp;REWARD: </font>
-				<span></span>
-			</p>
-			<p id='netcurrentblock'>
-				<font color="yellow">&emsp;CURRENT BLOCK HEIGHT: </font>
-				<span></span>
-			</p>
-			<p id='networktime'>
-				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>
-				<span></span>
-				<font color="5EFF33"> ago</font>
-			</p>
-			<p id='datenetworkblockfound'>
-				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>
-				<span></span>
-			</p>
-<!---------------------------------------------------------------------------------------->	
-			<p id='poolhashrate'>
-				<font color='white' size=5>POOL:</font>	
-				<span></span>
-				<font color="5EFF33"> KH/s</font>
-			</p>
-			<p id='luckavg'>
-				<font color="yellow">&emsp;OVERALL EFFORT: </font>
-				<span></span>
-				<font color="5EFF33">%</font>
-			</p>
-			<p id='network-poolblock'>
-				<font color="yellow">&emsp;POOLtoNETWORK BLOCK: </font>
-				<span></span>
-				<font color="5EFF33"> Blocks</font>
-			</p>
-			<p id='totalblockfound'>
-				<font color="yellow">&emsp;TOTAL BLOCK FOUND: </font>
-				<span></span>
-				<font color="5EFF33"> Blocks</font>
-			</p>
-			<p id='roundhash'>
-				<font color="yellow">&emsp;CURRENT ROUNDHASHES: </font>
-				<span></span>
-				<font color="5EFF33"> Hashes</font>
-			</p>
-			<p id='luck'>
-				<font color="yellow">&emsp;CURRENT EFFORT: </font>
-				<span></span>
-				<font color="5EFF33">%</font>
-			</p>
-			<p id='currentblock'>
-				<font color="yellow">&emsp;LAST BLOCK HEIGHT: </font>
-				<span></span>
-			</p>
-			<p id='lastblockluck'>
-				<font color="yellow">&emsp;LAST BLOCK EFFORT: </font>
-				<span></span>
-				<font color="5EFF33">%</font>
-			</p>
-			<p id='time'>
-				<font color="yellow">&emsp;LAST BLOCK FOUND: </font>
-				<span></span>
-				<font color="5EFF33"> ago</font>
-			</p>
-			<p id='dateblockfound'>
-				<font color="yellow">&emsp;LAST BLOCK DATETIME: </font>
-				<span></span>
-			</p>
-			<div class="data-section" id="maturityON" style="display: none"></div>
-			<div class="data-section" id="maturityOFF" style="display: none">
-				<div class="data-item-name"><font color="yellow">&emsp;MATURITY:</font> <font color="red">UNLOCK</font></div>
-			</div>
-<!---------------------------------------------------------------------------------------->
-			<p id='hashrate'>
-				<font color='white' size=5>MINER:</font>
-				<span></span>
-				<font color="5EFF33"> H/s</font>
-			</p>
-			<p id='totaldue'>
-				<font color="yellow">&emsp;PENDING BALANCE: </font>
-				<span></span>
-				<font color="5EFF33"> XMR</font>
-			</p>
-			<p id='totalpaid'>
-				<font color="yellow">&emsp;TOTAL PAID: </font>
-				<span></span>
-				<font color="5EFF33"> XMR</font>
-			</p>
-			<p id='totalhash'>
-				<font color="yellow">&emsp;TOTAL HASH: </font>
-				<span></span>
-				<font color="5EFF33"> Hashes</font>
-			</p>
-			<div class="data-section" id="miner"></div>
+	
+	<table class="table-fill">
+	<thead>
+	<tr>
+	<th class="text-left"><b><font color='white' size=5>NETWORK</font></b></th>
+	<th class="text-left"><p id='networkhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> MH/s</font></b></p></th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">DIFFICULTY</font></b></td>
+	<td class="text-left"><p id='diff'><b><font color='red'><span></span></font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">REWARD</font></b></td>
+	<td class="text-left"><p id='reward'><b><font color='red'><span></span></font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">CURRENT BLOCK HEIGHT</font></b></td>
+	<td class="text-left"><p id='netcurrentblock'><b><font color='red'><span></span></font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK FOUND</font></b></td>
+	<td class="text-left"><p id='networktime'><b><font color='red'><span></span></font><font color='5EFF33'> ago</font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK DATETIME</font></b></td>
+	<td class="text-left"><p id='datenetworkblockfound'><b><font color='red'><span></span></font></b></td>
+	</tr>
+	</tbody>
+	</table>
 	<br>
-<!---------------------------------------------------------------------------------------->
-		<font color='white' size=5>EXCHANGE & MARKET:</font>
-			<p id='xmrdotto'>
-				<font color="yellow">&emsp;XMRdotTO: </font>
-				<span></span>
-				<font color="5EFF33"> XMR/BTC</font>
-			</p>
-			<p id='shapeshift'>
-				<font color="yellow">&emsp;SHAPESHIFT: </font>
-				<span></span>
-				<font color="5EFF33"> XMR/BTC</font>
-			</p>
-			<p id='xmr-usd1'>
-				<font color="yellow">&emsp;CRYPTOCOMPARE: </font>
-				<span></span>
-				<font color="5EFF33"> USD</font>
-			</p>
-			<p id='xmr-usd2'>
-				<font color="yellow">&emsp;CRYPTONATOR: </font>
-				<span></span>
-				<font color="5EFF33"> USD</font>
-			</p>
-			<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
-			<br><br>
-			<form id="form1">
-				<button type="button" id="go_btn1">CHATBOX</button>
-			</form>
-		</b>
-	</section>
 
+	<table class="table-fill">
+	<thead>
+	<tr>
+	<th class="text-left"><b><font color='white' size=5>POOL</font></b></th>
+	<th class="text-left"><p id='poolhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> KH/s</font></b></p></th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">OVERALL EFFORT</font></b></td>
+	<td class="text-left"><p id='luckavg'><b><font color='red'><span></span></font><font color="5EFF33"> %</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">CURRENT EFFORT</font></b></td>
+	<td class="text-left"><p id='luck'><b><font color='red'><span></span></font><font color="5EFF33"> %</font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">CURRENT ROUNDHASHES</font></b></td>
+	<td class="text-left"><p id='roundhash'><b><font color='red'><span></span></font><font color='5EFF33'> Hashes</font></b></td>
+	</tr>	
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">POOLtoNETWORK BLOCK</font></b></td>
+	<td class="text-left"><p id='network-poolblock'><b><font color='red'><span></span></font><font color="5EFF33"> Blocks</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">TOTAL BLOCK FOUND</font></b></td>
+	<td class="text-left"><p id='totalblockfound'><b><font color='red'><span></span></font><font color="5EFF33"> Blocks</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK HEIGHT</font></b></td>
+	<td class="text-left"><p id='currentblock'><b><font color='red'><span></span></font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK EFFORT</font></b></td>
+	<td class="text-left"><p id='lastblockluck'><b><font color='red'><span></span></font><font color="5EFF33"> %</font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK FOUND</font></b></td>
+	<td class="text-left"><p id='time'><b><font color='red'><span></span></font><font color="5EFF33"> ago</font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">LAST BLOCK DATETIME</font></b></td>
+	<td class="text-left"><p id='dateblockfound'><b><font color='red'><span></span></font></b></td>
+	</tr>
+	<tr>
+	<td class="text-left">
+	<div class="data-section" id="maturityON" style="display: none"></div>
+	<div class="data-section" id="maturityOFF" style="display: none"><div class="data-item-name"><b><font color="4DC3FA">MATURITY:</font><font color="red"> UNLOCK</font></b></div></div>
+	</td>
+	<td class="text-center"><img src="monero.png" alt="XMR"></td>
+	</tr>
+	</tbody>
+	</table>
+	<br>
 
-<!---------------------------------------------------------------------------------------->
-	<style>
-		section span {
-			color: red;
-		}
-	</style>
+	<table class="table-fill">
+	<thead>
+	<tr>
+	<th class="text-left"><b><font color='white' size=5>MINER</font></b></th>
+	<th class="text-left"><p id='hashrate'><b><font color='red'><span></span></font><font color='5EFF33'> H/s</font></b></p></th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">PENDING BALANCE</font></b></td>
+	<td class="text-left"><p id='totaldue'><b><font color='red'><span></span></font><font color="5EFF33"> XMR</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">TOTAL PAID</font></b></td>
+	<td class="text-left"><p id='totalpaid'><b><font color='red'><span></span></font><font color="5EFF33"> XMR</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">TOTAL HASH</font></b></td>
+	<td class="text-left"><p id='totalhash'><b><font color='red'><span></span></font><font color="5EFF33"> Hashes</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left">
+	<div class="data-section" id="miner"></div>
+	</td>
+	<td class="text-center"><img src="monero.png" alt="XMR"></td>
+	</tr>
+	</tbody>
+	</table>
+	<br>
+
+	<table class="table-fill">
+	<thead>
+	<tr>
+	<th class="text-left"><b><font color='white' size=5>EXCHANGE</font></b></th>
+	<th class="text-left"></th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">XMR.TO</font></b></td>
+	<td class="text-left"><p id='xmrdotto'><b><font color='red'><span></span></font><font color="5EFF33"> XMR/BTC</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">SHAPESHIFT.IO</font></b></td>
+	<td class="text-left"><p id='shapeshift'><b><font color='red'><span></span></font><font color="5EFF33"> XMR/BTC</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">CRYPTOCOMPARE</font></b></td>
+	<td class="text-left"><p id='xmr-usd1'><b><font color='red'><span></span></font><font color="5EFF33"> USD</font></b></p></td>
+	</tr>
+	<tr>
+	<td class="text-left"><b><font color="4DC3FA">CRYPTONATOR</font></b></td>
+	<td class="text-left"><p id='xmr-usd2'><b><font color='red'><span></span></font><font color='5EFF33'> USD</font></b></td>
+	</tr>
+	</tbody>
+	</table>
+	<br>
+
+	<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
+	<br><br>
+	<form id="form1">
+		<button type="button" id="go_btn1">CHATBOX</button>
+	</form>
 	</div>
 <!---------------------------------------------------------------------------------------->
-<!--SUPPORTXMR BLOCK IFRAME-->
-	<div style="float: right; width: 57%;">
-		<style type="text/css">
-			iframe {
-				height: 1200px;
-				width: 880px;
-				border: none;
-			}
-		</style>
-
-		<center>
-		<b><font color='red'>supportXMR</font></b>
-		<form id="form">
-		<button type="button" id="go_btn">BLOCKs</button>
-		</form>
-
-		<iframe src="" id="frame" name="supportxmr"></iframe>
-		<p id="name"></p>
-		</center>
+<!--SUPPORTXMR BLOCK IFRAME-->	
+	<div style="float: right; width: 50%;">
+		<br><br>
+		<iframe src="blocktable.html" style="width:880px; height:1200px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
 
 		<script type="text/javascript">
-		(function() {
-			document.getElementById("go_btn").addEventListener("click", go);
-			document.getElementById("form").addEventListener("submit", go);
-			function go(e) {
-				e.preventDefault();
-				//url = 'https://'+yourpool+'/#/blocks'
-				url = 'blocktable.html'
-				document.getElementById("frame").src = url;
-				return false;
-			}
-		})(window);
-
 		(function() {
 			document.getElementById("go_btn1").addEventListener("click", go);
 			document.getElementById("form1").addEventListener("submit", go);
