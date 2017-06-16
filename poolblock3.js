@@ -3,13 +3,15 @@ var maturityValue = 60;
 var validValue = 'true';
 var netcurrentblock = '';
 var netcurrentdiff = '';
-var currentdate = new Date();
-var currentts = currentdate.getTime();
+var currentdate = '';
+var currentts = '';
 var lastvalidblock = '';
 var lastpoolroundhash = '';
 
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
+			currentdate = new Date();
+			currentts = currentdate.getTime();
 			netcurrentblock = data.height;
 			netcurrentdiff = parseInt(data.difficulty);
 	PoolBlock();
