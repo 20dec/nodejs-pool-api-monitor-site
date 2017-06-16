@@ -9,8 +9,8 @@ var maturity2 = '';
 var maturity3 = '';
 var maturity4 = '';
 var maturity5 = '';
-var currentdate = new Date();
-var currentdate2 = currentdate.getTime();
+var currentdate = '';
+var currentdate2 = '';
 var validValue = 'true';
 var chainHeight = '';
 var lastpoolroundhash = '';
@@ -27,6 +27,8 @@ function UpdateNetworkStats(){
 			$("#netcurrentblock span").html((data.height).toLocaleString());	// NETWORK CURRENT BLOCK
 			netcurrentblock = data.height;
 			networkblockfound = data.ts * 1000;
+			currentdate = new Date();
+			currentdate2 = currentdate.getTime();
 			networktime = parseInt(currentdate2) - parseInt(networkblockfound);
 			networkdate = new Date(networktime);
 			networkminute = networkdate.getUTCMinutes();
