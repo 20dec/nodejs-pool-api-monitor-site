@@ -39,7 +39,7 @@ function UpdatePoolStats(){
 }
 
 function PoolBlock(){
-	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=15", function(data) {
+	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=60", function(data) {
 		lastvalidblock = data[0].valid;
 		lastpoolroundhash = parseInt(data[0].shares);
 // MATURITY
