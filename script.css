@@ -133,6 +133,7 @@ th.text-right {
 
 td.text-left {
   text-align: left;
+  width: 200px;
 }
 
 td.text-center {
