@@ -24,6 +24,5 @@ http://api4sx.cf/
 #TRY ANDROID APP:
 http://api4sx.cf/supportxmr.apk
 
-#BUY ME A COFFEE:
-XMR:
+#BUY ME A COFFEE (XMR):
 48LGJ82uSWC47hqVyjWZfrPH9UmQhsVYzCHBg4MuqpRp7qKZKnfs5PbRTCCJRY5XdgT2Gwr9NpBMB43g3M93cu3n438bw3t
