@@ -155,13 +155,13 @@ function UpdateMarketExchange(){
 	$.getJSON("https://shapeshift.io/rate/xmr_btc", function(data) {
 			$("#shapeshift span").html(data.rate);												// SHAPESHIFT.IO EXCHANGE RATE
 	});
-	$.getJSON("https://crossorigin.me/https://xmr.to/api/v1/xmr2btc/order_parameter_query/?format=json", function(data) {
+	$.getJSON("https://xmr.to/api/v1/xmr2btc/order_parameter_query/?format=json", function(data) {
 			$("#xmrdotto span").html(data.price);												// XMR.TO EXCHANGE RATE
 	});
-	$.getJSON("https://crossorigin.me/https://min-api.cryptocompare.com/data/pricemulti?fsyms=XMR&tsyms=USD", function(data) {
+	$.getJSON("https://min-api.cryptocompare.com/data/pricemulti?fsyms=XMR&tsyms=USD", function(data) {
 			$("#xmr-usd1 span").html(data.XMR.USD * 1);											// CRYPTOCOMPARE XMR/USD RATE
 	});
-	$.getJSON("https://crossorigin.me/https://api.cryptonator.com/api/ticker/xmr-usd", function(data) {
+	$.getJSON("https://api.cryptonator.com/api/ticker/xmr-usd", function(data) {
 			$("#xmr-usd2 span").html((data.ticker.price * 1).toFixed(2));						// CRYPTONATOR XMR/USD RATE
 	});
 }
