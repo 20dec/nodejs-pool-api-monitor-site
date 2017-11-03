@@ -16,7 +16,7 @@ Thank @gh2k for some enhancement scripts
 - Automatically showing Block Maturity (Up to 5 Blocks at one time)
 
 #SCREENSHOT:
-http://imgh.us/screenshot_78.png
+http://api4sx.cf/supportxmr.png
 
 #TRY IT ONLINE:
 http://api4sx.cf/
