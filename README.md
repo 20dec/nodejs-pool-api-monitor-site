@@ -16,13 +16,13 @@ Thank @gh2k for some enhancement scripts
 - Automatically showing Block Maturity (Up to 5 Blocks at one time)
 
 #SCREENSHOT:
-http://api4sx.cf/supportxmr.png
+http://supportxmr.cf/supportxmr.png
 
 #TRY IT ONLINE:
-http://api4sx.cf/
+http://supportxmr.cf/
 
 #TRY ANDROID APP:
-http://api4sx.cf/supportxmr.apk
+http://supportxmr.cf/supportxmr.apk
 
 #BUY ME A COFFEE (XMR):
 48LGJ82uSWC47hqVyjWZfrPH9UmQhsVYzCHBg4MuqpRp7qKZKnfs5PbRTCCJRY5XdgT2Gwr9NpBMB43g3M93cu3n438bw3t
