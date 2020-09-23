@@ -1,6 +1,5 @@
 // ALL VAR
 var unlock = 'UNLOCKED';
-var netcurrentblock = '';
 var netdiff = '';
 var title1 = '';
 var title2 = '';
@@ -12,20 +11,22 @@ var maturity5 = '';
 var currentdate = '';
 var currentdate2 = '';
 var validValue = 'true';
+var lastvalidblock = '';
 var chainHeight = '';
 var lastpoolroundhash = '';
-var lastvalidblock = '';
+var maturityValue = 60;
+var lastblockluck = '';
 
 // TITLE
 function UpdateTitle(){
-	$('title').html(title1+' H/s - '+title2+' Blocks');	 // BROWSER TITLE
+	$('title').html(title1+' KH/s - '+title2+' Blocks');	 // BROWSER TITLE
 }
 
 // NETWORK
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
 			$("#netcurrentblock span").html((data.height).toLocaleString());	// NETWORK CURRENT BLOCK
-			netcurrentblock = data.height;
+			chainHeight = parseInt(data.height);
 			networkblockfound = data.ts * 1000;
 			currentdate = new Date();
 			currentdate2 = currentdate.getTime();
@@ -39,10 +40,9 @@ function UpdateNetworkStats(){
 			$("#diff span").html((data.difficulty).toLocaleString());	// NETWORK DIFF
 			$("#reward span").html(data.value / 1000000000000); // NETWORK REWARD
 			netdiff = parseInt(data.difficulty);
-			$("#networkhashrate span").html((netdiff / 120 / 1000000).toFixed(1));	// NETWORK HASHRATE
+			$("#networkhashrate span").html((netdiff / 120 / 1000000000).toFixed(1));	// NETWORK HASHRATE
 	UpdatePoolStats();
 	});
-
 }
 
 // POOL
@@ -51,11 +51,11 @@ function UpdatePoolStats(){
 			lastvalidblock = data[0].valid;
 			lastpoolroundhash = parseInt(data[0].shares);
 			lastnetdiff = parseInt(data[0].diff);
+			lastblockluck = parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0));
 			if (validValue = data[0].valid){
 				if (validValue = data[1].valid){$("#lastblockluck span").html(parseInt(((lastpoolroundhash / lastnetdiff) * 100).toFixed(0)));
 					} else {$("#lastblockluck span").html(parseInt((((parseInt(data[0].shares) + parseInt(data[1].shares)) / parseInt(data[1].diff) * 100).toFixed(0))));}
 			} else {$("#lastblockluck span").html(parseInt(((parseInt(data[1].shares) / parseInt(data[1].diff) * 100).toFixed(0))));};
-			chainHeight = parseInt(netcurrentblock);
 			if (validValue = data[0].valid){
 			maturity1 = 60 - (chainHeight - data[0].height);
 			} else {maturity1 = 0};
@@ -78,9 +78,24 @@ function UpdatePoolStats(){
 			$("#currentblock span").html((data.pool_statistics.lastBlockFound).toLocaleString());	// POOL CURRENT BLOCK
 			currentblock = parseInt(data.pool_statistics.lastBlockFound);
 			$("#network-poolblock span").html(chainHeight - currentblock);	// POOLtoNETWORK BLOCK
-			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000).toFixed(1));
-			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());
-			roundhash = parseInt(data.pool_statistics.roundHashes);
+			$("#poolhashrate span").html((data.pool_statistics.hashRate / 1000000).toFixed(1));	//POOL HASH RATE
+			$("#roundhash span").html((data.pool_statistics.roundHashes).toLocaleString());	//POOL CURRENT HASHES
+			roundhash = parseInt(data.pool_statistics.roundHashes);			
+//			Notification();	// BLOCK FOUND NOTIFICATION
+//			CheckNotification = setInterval(Notification, 5000);
+//			function Notification(){
+//				if (validValue = lastvalidblock){
+//					if (roundhash < 150000000){
+//						alert("BLOCK FOUND!");
+//					} else {return;}
+//				} else {
+//					if (roundhash < 150000000){
+//						alert("BLOCK FOUND but ORPHAN!");
+//					} else {return;}
+//				}
+//			}
+//
+
 			if (validValue = lastvalidblock){ 	//POOL CURRENT LUCK
 				$("#luck span").html(parseInt(((roundhash / netdiff) * 100).toFixed(0)));}
 			else {$("#luck span").html(parseInt((((roundhash + lastpoolroundhash)  / netdiff) * 100).toFixed(0)));}
@@ -95,20 +110,32 @@ function UpdatePoolStats(){
 			if (time < 3600000) {	// POOL LAST BLOCK FOUND
 				$("#time span").html(minute+' minutes');
 			} else {$("#time span").html(hour+' hours '+minute+' minutes');}
-			$("#totalblockfound span").html(data.pool_statistics.totalBlocksFound);	// POOL TOTAL BLOCK FOUND
+			totalblockfound = parseInt(data.pool_statistics.totalBlocksFound);
+			$("#totalblockfound span").html((totalblockfound).toLocaleString());	// POOL TOTAL BLOCK FOUND
 			title2 = parseInt(data.pool_statistics.totalBlocksFound);
+//			if (validValue = lastvalidblock){
+//				if (time < 20000){
+//					alert('BLOCK FOUND with'+' '+lastblockluck+'% EFFORT');
+//				} else {return;}
+//			} else {
+//				if (time < 20000){
+//					alert('BLOCK FOUND with'+' '+lastblockluck+'% EFFORT but ORPHAN');
+//				} else {return;}
+//			}
 	});
 }
+
 
 // MINERS
 function UpdateMinerStats(){
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/stats", function(data) {
 			$("#totaldue span").html((data.amtDue / 1000000000000).toFixed(10));	// MINER PENDING BALANCE
-			$("#totalpaid span").html((data.amtPaid / 1000000000000).toFixed(10));	// MINER TOTAL PAID			
-			$("#totalhash span").html(data.totalHashes);	// MINER TOTAL HASH
-			$("#hashrate span").html(data.hash);	// MINER GLOBAL HASHRATE
-			title1 = parseInt(data.hash);	
-	});	
+			$("#totalpaid span").html((data.amtPaid / 1000000000000).toFixed(10));	// MINER TOTAL PAID
+			totalhashes = parseInt(data.totalHashes);
+			$("#totalhash span").html((totalhashes).toLocaleString());	// MINER TOTAL HASH
+			$("#hashrate span").html(data.hash / 1000);	// MINER GLOBAL HASHRATE
+			title1 = parseInt(data.hash / 1000);
+	});
 	$.getJSON("https://"+yourpool+"/api/miner/"+wallet+"/identifiers", function(identifierData) {
 			identifiers = identifierData;  // SORT THE IDENTIFIERS FOR CONSISTENT DISPLAY
 			identifiers.sort();
@@ -136,7 +163,7 @@ function UpdateMinerStats(){
 
 // OVERALL LUCK
 function LuckAvg(){
-	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=10000", function(data) {
+	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=25", function(data) {
 			sumpoolroundhash = 0;
 			for (var i = 0; i < data.length; i++){
 				sumpoolroundhash += data[i].shares;
@@ -151,13 +178,8 @@ function LuckAvg(){
 	});
 }
 
+// MARKET & EXCHANGE
 function UpdateMarketExchange(){
-	$.getJSON("https://shapeshift.io/rate/xmr_btc", function(data) {
-			$("#shapeshift span").html(data.rate);												// SHAPESHIFT.IO EXCHANGE RATE
-	});
-	$.getJSON("https://xmr.to/api/v1/xmr2btc/order_parameter_query/?format=json", function(data) {
-			$("#xmrdotto span").html(data.price);												// XMR.TO EXCHANGE RATE
-	});
 	$.getJSON("https://min-api.cryptocompare.com/data/pricemulti?fsyms=XMR&tsyms=USD", function(data) {
 			$("#xmr-usd1 span").html(data.XMR.USD * 1);											// CRYPTOCOMPARE XMR/USD RATE
 	});
@@ -310,7 +332,7 @@ function UpdateMaturity(){
 function UpdateAllStats(){
 	UpdateMinerStats();
 	UpdateMaturity();
-	UpdatePoolStats();
+//	UpdatePoolStats();
 	UpdateNetworkStats();
 	UpdateMarketExchange();
 	UpdateTitle();
@@ -318,9 +340,14 @@ function UpdateAllStats(){
 }
 
 // SET TIME TO REFRESH ALL VALUE in SECOND
-var time = 5;
-
+var time = 10;
 $(window).on("load", function() {
 	UpdateAllStats();
 	setInterval(UpdateAllStats, time * 1000);
+});
+
+var time2 = 5;
+$(window).on("load", function() {
+	UpdatePoolStats();
+	setInterval(UpdatePoolStats, time2 * 1000);
 });
