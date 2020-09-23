@@ -3,15 +3,13 @@ var maturityValue = 60;
 var validValue = 'true';
 var netcurrentblock = '';
 var netcurrentdiff = '';
-var currentdate = '';
-var currentts = '';
+var currentdate = new Date();
+var currentts = currentdate.getTime();
 var lastvalidblock = '';
 var lastpoolroundhash = '';
 
 function UpdateNetworkStats(){
 	$.getJSON("https://"+yourpool+"/api/network/stats", function(data) {
-			currentdate = new Date();
-			currentts = currentdate.getTime();
 			netcurrentblock = data.height;
 			netcurrentdiff = parseInt(data.difficulty);
 	PoolBlock();
@@ -429,21 +427,21 @@ function PoolBlock(){
 	}
 
 // TIME FOUND
-	date1 = new Date(data[60].ts);
-	date2 = new Date(data[61].ts);
-	date3 = new Date(data[62].ts);
-	date4 = new Date(data[63].ts);
-	date5 = new Date(data[64].ts);
-	date6 = new Date(data[65].ts);
-	date7 = new Date(data[66].ts);
-	date8 = new Date(data[67].ts);
-	date9 = new Date(data[68].ts);
-	date10 = new Date(data[69].ts);
-	date11 = new Date(data[70].ts);
-	date12 = new Date(data[71].ts);
-	date13 = new Date(data[72].ts);
-	date14 = new Date(data[73].ts);
-	date15 = new Date(data[74].ts);
+	date1 = new Date(parseInt(data[60].ts));
+	date2 = new Date(parseInt(data[61].ts));
+	date3 = new Date(parseInt(data[62].ts));
+	date4 = new Date(parseInt(data[63].ts));
+	date5 = new Date(parseInt(data[64].ts));
+	date6 = new Date(parseInt(data[65].ts));
+	date7 = new Date(parseInt(data[66].ts));
+	date8 = new Date(parseInt(data[67].ts));
+	date9 = new Date(parseInt(data[68].ts));
+	date10 = new Date(parseInt(data[69].ts));
+	date11 = new Date(parseInt(data[70].ts));
+	date12 = new Date(parseInt(data[71].ts));
+	date13 = new Date(parseInt(data[72].ts));
+	date14 = new Date(parseInt(data[73].ts));
+	date15 = new Date(parseInt(data[74].ts));
 
 	datetime1 = date1.toLocaleString();
 	datetime2 = date2.toLocaleString();
