@@ -2,7 +2,7 @@
 	<head>
 		<script src="jquery-3.1.1.min.js"></script>
 		<script src="script.js"></script>
-		<link rel="stylesheet" type="text/css" href="script.css">
+		<link rel="stylesheet" type="text/css" href="script.css"/>
 		<script src="wallet_n_pool.js"></script>
 		<title>supportXMR</title>
 	</head>
@@ -15,7 +15,7 @@
 	<thead>
 	<tr>
 	<th class="text-left"><b><font color='white' size=5>NETWORK</font></b></th>
-	<th class="text-left"><p id='networkhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> MH/s</font></b></p></th>
+	<th class="text-left"><p id='networkhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> GH/s</font></b></p></th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
@@ -47,12 +47,12 @@
 	<thead>
 	<tr>
 	<th class="text-left"><b><font color='white' size=5>POOL</font></b></th>
-	<th class="text-left"><p id='poolhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> KH/s</font></b></p></th>
+	<th class="text-left"><p id='poolhashrate'><b><font color='red'><span></span></font><font color='5EFF33'> MH/s</font></b></p></th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
 	<tr>
-	<td class="text-left"><b><font color="4DC3FA">OVERALL EFFORT</font></b></td>
+	<td class="text-left"><b><font color="4DC3FA">25 BLOCKS OVERALL EFFORT</font></b></td>
 	<td class="text-left"><p id='luckavg'><b><font color='red'><span></span></font><font color="5EFF33"> %</font></b></p></td>
 	</tr>
 	<tr>
@@ -102,7 +102,7 @@
 	<thead>
 	<tr>
 	<th class="text-left"><b><font color='white' size=5>MINER</font></b></th>
-	<th class="text-left"><p id='hashrate'><b><font color='red'><span></span></font><font color='5EFF33'> H/s</font></b></p></th>
+	<th class="text-left"><p id='hashrate'><b><font color='red'><span></span></font><font color='5EFF33'> KH/s</font></b></p></th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
@@ -137,14 +137,6 @@
 	</thead>
 	<tbody class="table-hover">
 	<tr>
-	<td class="text-left"><b><font color="4DC3FA">XMR.TO</font></b></td>
-	<td class="text-left"><p id='xmrdotto'><b><font color='red'><span></span></font><font color="5EFF33"> XMR/BTC</font></b></p></td>
-	</tr>
-	<tr>
-	<td class="text-left"><b><font color="4DC3FA">SHAPESHIFT.IO</font></b></td>
-	<td class="text-left"><p id='shapeshift'><b><font color='red'><span></span></font><font color="5EFF33"> XMR/BTC</font></b></p></td>
-	</tr>
-	<tr>
 	<td class="text-left"><b><font color="4DC3FA">CRYPTOCOMPARE</font></b></td>
 	<td class="text-left"><p id='xmr-usd1'><b><font color='red'><span></span></font><font color="5EFF33"> USD</font></b></p></td>
 	</tr>
@@ -163,12 +155,42 @@
 	</form>
 	</div>
 <!---------------------------------------------------------------------------------------->
-<!--SUPPORTXMR BLOCK IFRAME-->	
+<!--SUPPORTXMR BLOCK IFRAME1111-->	
 	<div style="float: right; width: 48%;">
 		<br><br>
 		<iframe src="blocktable.html" style="width:880px; height:1200px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
 
+		<!--	<style type="text/css">
+			iframe {
+				height: 880px;
+				width: 940px;
+				border: none;
+			}
+		</style>
+
+		<center>
+		<b><font color='red'>supportXMR</font></b>
+		<form id="form">
+		<button type="button" id="go_btn">BLOCKs</button>
+		</form>
+
+		<iframe src="" id="frame" name="supportxmr"></iframe>
+		<p id="name"></p>
+		</center>
+-->
 		<script type="text/javascript">
+//		(function() {
+//			document.getElementById("go_btn").addEventListener("click", go);
+//			document.getElementById("form").addEventListener("submit", go);
+//			function go(e) {
+//				e.preventDefault();
+//				url = 'https://'+yourpool+'/#/blocks'
+//				url = 'blocktable.html'
+//				document.getElementById("frame").src = url;
+//				return false;
+//			}
+//		})(window);
+
 		(function() {
 			document.getElementById("go_btn1").addEventListener("click", go);
 			document.getElementById("form1").addEventListener("submit", go);
