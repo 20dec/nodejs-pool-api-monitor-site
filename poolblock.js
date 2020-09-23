@@ -429,22 +429,22 @@ function PoolBlock(){
 	}
 
 // TIME FOUND
-	date1 = new Date(data[0].ts);
-	date2 = new Date(data[1].ts);
-	date3 = new Date(data[2].ts);
-	date4 = new Date(data[3].ts);
-	date5 = new Date(data[4].ts);
-	date6 = new Date(data[5].ts);
-	date7 = new Date(data[6].ts);
-	date8 = new Date(data[7].ts);
-	date9 = new Date(data[8].ts);
-	date10 = new Date(data[9].ts);
-	date11 = new Date(data[10].ts);
-	date12 = new Date(data[11].ts);
-	date13 = new Date(data[12].ts);
-	date14 = new Date(data[13].ts);
-	date15 = new Date(data[14].ts);
-
+	date1 = new Date(parseInt(data[0].ts));
+	date2 = new Date(parseInt(data[1].ts));
+	date3 = new Date(parseInt(data[2].ts));
+	date4 = new Date(parseInt(data[3].ts));
+	date5 = new Date(parseInt(data[4].ts));
+	date6 = new Date(parseInt(data[5].ts));
+	date7 = new Date(parseInt(data[6].ts));
+	date8 = new Date(parseInt(data[7].ts));
+	date9 = new Date(parseInt(data[8].ts));
+	date10 = new Date(parseInt(data[9].ts));
+	date11 = new Date(parseInt(data[10].ts));
+	date12 = new Date(parseInt(data[11].ts));
+	date13 = new Date(parseInt(data[12].ts));
+	date14 = new Date(parseInt(data[13].ts));
+	date15 = new Date(parseInt(data[14].ts));
+	
 	datetime1 = date1.toLocaleString();
 	datetime2 = date2.toLocaleString();
 	datetime3 = date3.toLocaleString();
