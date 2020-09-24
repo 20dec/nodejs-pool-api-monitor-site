@@ -128,27 +128,38 @@
 	</table>
 	<br>
 
-	<table class="table-fill">
-	<thead>
-	<tr>
-	<th class="text-left"><b><font color='white' size=5>EXCHANGE</font></b></th>
-	<th class="text-left"></th>
-	</tr>
-	</thead>
-	<tbody class="table-hover">
-	<tr>
-	<td class="text-left"><b><font color="4DC3FA">CRYPTOCOMPARE</font></b></td>
-	<td class="text-left"><p id='xmr-usd1'><b><font color='red'><span></span></font><font color="5EFF33"> USD</font></b></p></td>
-	</tr>
-	<tr>
-	<td class="text-left"><b><font color="4DC3FA">CRYPTONATOR</font></b></td>
-	<td class="text-left"><p id='xmr-usd2'><b><font color='red'><span></span></font><font color='5EFF33'> USD</font></b></td>
-	</tr>
-	</tbody>
-	</table>
-	<br>
+	<style>
+div.data-section {
+	font-weight: bold;
+	padding: 5px;
+}
 
-	<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
+div.data-section-header {
+	font-size: 18pt;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+}
+
+div.data-item-name {
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+div.data-section-header div.data-item-name {
+	color: white;
+}
+</style>
+			<div class="data-section" id="market">
+				<div class="data-section-header">
+					<div class="data-item-name">Price:</div>
+				</div>
+				<div class="data-section-item">
+					<div class="data-item-name">
+						<iframe src="https://www.monero.how/widget" style="width:210px; height:130px;" allowTransparency="true" border="0" 
+						        hideFocus="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameBorder="no"></iframe>
+					</div>
+				</div>
+			</div>
 	<br><br>
 	<form id="form1">
 		<button type="button" id="go_btn1">CHATBOX</button>
