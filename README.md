@@ -18,7 +18,7 @@ Thank @gh2k for some enhancement scripts
 - Automatically showing Block Maturity (Up to 5 Blocks at one time)
 
 #SCREENSHOT:
-updating...
+https://imgur.com/erSwj0V
 
 #TRY IT ONLINE:
 updating...
