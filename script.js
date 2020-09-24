@@ -163,18 +163,18 @@ function UpdateMinerStats(){
 
 // OVERALL LUCK
 function LuckAvg(){
-	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=25", function(data) {
+	$.getJSON("https://"+yourpool+"/api/pool/blocks/pplns?limit=500000", function(data) {
 			sumpoolroundhash = 0;
 			for (var i = 0; i < data.length; i++){
-				sumpoolroundhash += data[i].shares;
+				sumpoolroundhash += parseInt(data[i].shares);
 			}
 			avgroundhash = parseInt(sumpoolroundhash / data.length);
 			sumnetdiff = 0;
 			for (var x = 0; x < data.length; x++){
-				sumnetdiff += data[x].diff;
+				sumnetdiff += parseInt(data[x].diff);
 			}
 			avgnetdiff = parseInt(sumnetdiff / data.length);
-			$("#luckavg span").html(((avgroundhash / avgnetdiff) * 100).toFixed(2));	// POOL OVERALL LUCK
+			$("#luckavg span").html(((avgroundhash / avgnetdiff) * 100).toFixed(4));	// POOL OVERALL LUCK
 	});
 }
 
